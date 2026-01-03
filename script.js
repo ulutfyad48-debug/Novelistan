@@ -1,3 +1,10 @@
+// ============================================
+// NOVELISTAN - GOOGLE DRIVE INTEGRATED SYSTEM
+// ============================================
+
+// Google Drive API Configuration
+const API_KEY = 'AIzaSyCMppjIJi2_xBi3oLVXN0XjdANMX10xmwE';
+
 // Google Drive Folder IDs
 const FOLDERS = {
     novel: '1PWDGvI9Pxkzma58-BDPZYAxq4Mhw1gdu',
@@ -6,32 +13,48 @@ const FOLDERS = {
     about: '1QHIFfbqFIcpzHKEwEzPlRovHrC4t7wkX'
 };
 
-// Google Drive API Key (آپ کو یہ Google Cloud Console سے لینا ہوگا)
-const API_KEY = 'YOUR_GOOGLE_DRIVE_API_KEY_HERE';
-
-// Store purchased episodes
+// Storage for purchased episodes (uses browser localStorage)
 let purchasedEpisodes = [];
 
-// Load purchased episodes from localStorage
-function loadPurchasedEpisodes() {
-    const stored = localStorage.getItem('purchased_episodes');
-    if (stored) {
-        purchasedEpisodes = JSON.parse(stored);
-    }
-}
+// Current purchase information
+let currentPurchase = null;
 
-// Save purchased episodes to localStorage
-function savePurchasedEpisodes() {
-    localStorage.setItem('purchased_episodes', JSON.stringify(purchasedEpisodes));
-}
+// ============================================
+// INITIALIZATION
+// ============================================
 
-// Initialize on page load
 window.addEventListener('DOMContentLoaded', () => {
     loadPurchasedEpisodes();
     loadEpisodes();
+    console.log('✅ Novelistan initialized successfully!');
 });
 
-// Show specific section
+// ============================================
+// STORAGE MANAGEMENT
+// ============================================
+
+function loadPurchasedEpisodes() {
+    const stored = localStorage.getItem('purchased_episodes');
+    if (stored) {
+        try {
+            purchasedEpisodes = JSON.parse(stored);
+            console.log('✅ Loaded purchased episodes:', purchasedEpisodes);
+        } catch (e) {
+            console.error('Error loading purchased episodes:', e);
+            purchasedEpisodes = [];
+        }
+    }
+}
+
+function savePurchasedEpisodes() {
+    localStorage.setItem('purchased_episodes', JSON.stringify(purchasedEpisodes));
+    console.log('✅ Saved purchased episodes:', purchasedEpisodes);
+}
+
+// ============================================
+// NAVIGATION
+// ============================================
+
 function showSection(section) {
     document.getElementById('home-screen').style.display = 'none';
     document.querySelectorAll('.content-section').forEach(s => {
@@ -49,37 +72,66 @@ function showSection(section) {
     } else if (section === 'about') {
         loadAbout();
     }
+
+    window.scrollTo(0, 0);
 }
 
-// Show home screen
 function showHome() {
     document.getElementById('home-screen').style.display = 'block';
     document.querySelectorAll('.content-section').forEach(s => {
         s.classList.remove('active');
     });
+    window.scrollTo(0, 0);
 }
 
-// Load Novel Episodes (1-100)
+// ============================================
+// GOOGLE DRIVE API FUNCTIONS
+// ============================================
+
+async function fetchDriveFiles(folderId) {
+    try {
+        const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&key=${API_KEY}&fields=files(id,name,webViewLink,mimeType,thumbnailLink)&orderBy=name`;
+        
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        if (data.error) {
+            console.error('Drive API Error:', data.error);
+            return [];
+        }
+        
+        return data.files || [];
+    } catch (error) {
+        console.error('Error fetching Drive files:', error);
+        return [];
+    }
+}
+
+function getDriveImageUrl(fileId) {
+    return `https://drive.google.com/uc?export=view&id=${fileId}`;
+}
+
+// ============================================
+// NOVEL EPISODES (1-100)
+// ============================================
+
 function loadEpisodes() {
     const container = document.getElementById('episodes-container');
     container.innerHTML = '';
 
-    // Create 100 episode cards
     for (let i = 1; i <= 100; i++) {
         const card = document.createElement('div');
         card.className = 'episode-card';
         
         let status = '';
         let label = '';
-        let clickHandler = '';
-
-        // Determine episode status
+        
         if (i <= 10) {
             // First 10 episodes are FREE
             card.classList.add('free');
             status = 'free';
             label = 'مفت';
-            clickHandler = `onclick="openEpisode(${i}, 'free')"`;
+            card.onclick = () => openEpisode(i, 'free');
         } else if (i <= 80) {
             // Episodes 11-80 (paid in packages of 5)
             const packageNum = Math.ceil((i - 10) / 5);
@@ -89,12 +141,12 @@ function loadEpisodes() {
                 card.classList.add('free');
                 status = 'purchased';
                 label = 'خریدا ہوا';
-                clickHandler = `onclick="openEpisode(${i}, 'purchased')"`;
+                card.onclick = () => openEpisode(i, 'purchased');
             } else {
                 card.classList.add('paid');
                 status = 'paid';
                 label = `${price} روپے`;
-                clickHandler = `onclick="showPaymentModal(${i}, ${price}, ${packageNum})"`;
+                card.onclick = () => showPaymentModal(i, price, packageNum);
             }
         } else {
             // Last 20 episodes (81-100)
@@ -102,16 +154,14 @@ function loadEpisodes() {
                 card.classList.add('free');
                 status = 'purchased';
                 label = 'خریدا ہوا';
-                clickHandler = `onclick="openEpisode(${i}, 'purchased')"`;
+                card.onclick = () => openEpisode(i, 'purchased');
             } else {
                 card.classList.add('paid');
                 status = 'paid';
                 label = '300 روپے';
-                clickHandler = `onclick="showPaymentModal(${i}, 300, 'final')"`;
+                card.onclick = () => showPaymentModal(i, 300, 'final');
             }
         }
-
-        card.setAttribute('onclick', clickHandler.replace('onclick="', '').replace('"', ''));
         
         card.innerHTML = `
             <div class="episode-number">قسط ${i}</div>
@@ -122,47 +172,45 @@ function loadEpisodes() {
     }
 }
 
-// Open Episode (for free or purchased episodes)
 async function openEpisode(episodeNum, type) {
-    // Try to fetch the file from Google Drive
-    const fileUrl = await getEpisodeFileUrl(episodeNum);
-    
-    if (fileUrl) {
-        window.open(fileUrl, '_blank');
-    } else {
-        alert(`قسط ${episodeNum} ابھی دستیاب نہیں ہے۔ براہ کرم بعد میں کوشش کریں۔`);
-    }
-}
-
-// Get Episode File URL from Google Drive
-async function getEpisodeFileUrl(episodeNum) {
     try {
-        // Google Drive API call to list files
-        const url = `https://www.googleapis.com/drive/v3/files?q='${FOLDERS.novel}'+in+parents&key=${API_KEY}&fields=files(id,name,webViewLink)`;
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (data.files) {
-            // Find file matching episode number (e.g., "1.pdf", "Episode 1.pdf", etc.)
-            const episodeFile = data.files.find(file => {
-                const fileName = file.name.toLowerCase();
-                return fileName.includes(episodeNum.toString()) || 
-                       fileName.includes(`episode ${episodeNum}`) ||
-                       fileName.includes(`قسط ${episodeNum}`);
-            });
-
-            if (episodeFile) {
-                return episodeFile.webViewLink || `https://drive.google.com/file/d/${episodeFile.id}/view`;
-            }
+        console.log(`Opening episode ${episodeNum}...`);
+        
+        // Fetch files from Drive
+        const files = await fetchDriveFiles(FOLDERS.novel);
+        
+        if (files.length === 0) {
+            alert('❌ ناول کی فائلیں ابھی دستیاب نہیں ہیں۔ براہ کرم بعد میں کوشش کریں۔');
+            return;
+        }
+        
+        // Find the episode file
+        const episodeFile = files.find(file => {
+            const fileName = file.name.toLowerCase();
+            const episodeStr = episodeNum.toString();
+            
+            // Match patterns: "1.pdf", "Episode 1.pdf", "قسط 1.pdf", "01.pdf"
+            return fileName.includes(episodeStr + '.') || 
+                   fileName.includes(episodeStr + ' ') ||
+                   fileName.includes('0' + episodeStr + '.') ||
+                   fileName.includes(`episode ${episodeStr}`) ||
+                   fileName.includes(`قسط ${episodeStr}`);
+        });
+        
+        if (episodeFile) {
+            window.open(episodeFile.webViewLink, '_blank');
+        } else {
+            alert(`❌ قسط ${episodeNum} ابھی دستیاب نہیں ہے۔ براہ کرم بعد میں کوشش کریں۔`);
         }
     } catch (error) {
-        console.error('Error fetching episode:', error);
+        console.error('Error opening episode:', error);
+        alert('❌ قسط کھولنے میں مسئلہ ہوا۔ براہ کرم دوبارہ کوشش کریں۔');
     }
-    return null;
 }
 
-// Show Payment Modal
-let currentPurchase = null;
+// ============================================
+// PAYMENT SYSTEM
+// ============================================
 
 function showPaymentModal(episodeNum, price, packageId) {
     currentPurchase = { episodeNum, price, packageId };
@@ -172,15 +220,11 @@ function showPaymentModal(episodeNum, price, packageId) {
     
     let messageText = '';
     
-    if (episodeNum <= 50) {
+    if (typeof packageId === 'number') {
         const startEp = ((packageId - 1) * 5) + 11;
         const endEp = startEp + 4;
         messageText = `اقساط ${startEp} سے ${endEp} تک: ${price} روپے`;
-    } else if (episodeNum <= 80) {
-        const startEp = ((packageId - 1) * 5) + 11;
-        const endEp = startEp + 4;
-        messageText = `اقساط ${startEp} سے ${endEp} تک: ${price} روپے`;
-    } else {
+    } else if (packageId === 'final') {
         messageText = `آخری 20 اقساط (81-100): ${price} روپے`;
     }
     
@@ -188,33 +232,39 @@ function showPaymentModal(episodeNum, price, packageId) {
     modal.classList.add('active');
 }
 
-// Close Payment Modal
 function closePaymentModal() {
     document.getElementById('payment-modal').classList.remove('active');
-    // Show code entry modal
     setTimeout(() => {
         showCodeModal();
-    }, 500);
+    }, 300);
 }
 
-// Show Code Entry Modal
 function showCodeModal() {
     document.getElementById('code-modal').classList.add('active');
     document.getElementById('code-input').value = '';
     document.getElementById('code-input').focus();
 }
 
-// Close Code Modal
 function closeCodeModal() {
     document.getElementById('code-modal').classList.remove('active');
+    currentPurchase = null;
 }
 
-// Verify Code
 function verifyCode() {
     const input = document.getElementById('code-input').value.trim().toUpperCase();
-    const { episodeNum, packageId } = currentPurchase;
     
-    // Generate expected code based on your formula
+    if (!input) {
+        alert('⚠️ براہ کرم کوڈ درج کریں');
+        return;
+    }
+
+    if (!currentPurchase) {
+        alert('❌ خرابی! براہ کرم دوبارہ کوشش کریں۔');
+        closeCodeModal();
+        return;
+    }
+    
+    const { episodeNum, packageId } = currentPurchase;
     const expectedCode = generateExpectedCode(episodeNum, packageId);
     
     if (input === expectedCode) {
@@ -227,17 +277,16 @@ function verifyCode() {
         savePurchasedEpisodes();
         
         closeCodeModal();
-        loadEpisodes(); // Reload episodes to show purchased ones
+        loadEpisodes(); // Reload episodes
         
-        alert('✅ کوڈ درست ہے! اب آپ یہ اقساط پڑھ سکتے ہیں۔');
+        alert('✅ کوڈ تصدیق ہو گیا! اب آپ یہ اقساط پڑھ سکتے ہیں۔');
     } else {
-        alert('❌ غلط کوڈ! براہ کرم دوبارہ کوشش کریں یا واٹس ایپ پر رابطہ کریں۔');
+        alert(`❌ غلط کوڈ!\n\nآپ نے درج کیا: ${input}\nصحیح کوڈ: ${expectedCode}\n\nبراہ کرم واٹس ایپ پر رابطہ کریں۔`);
     }
 }
 
-// Generate Expected Code (YHD formula)
 function generateExpectedCode(episodeNum, packageId) {
-    // Your code formula: YHD{episode}MS{package}
+    // Code format: YHD{episode}MS{package}
     if (packageId === 'final') {
         return `YHD${episodeNum}MSFINAL`;
     } else {
@@ -245,26 +294,33 @@ function generateExpectedCode(episodeNum, packageId) {
     }
 }
 
-// Load Poetry from Google Drive
+// ============================================
+// POETRY SECTION
+// ============================================
+
 async function loadPoetry() {
     const container = document.getElementById('poetry-container');
     container.innerHTML = '<div class="loading">شاعری لوڈ ہو رہی ہے...</div>';
     
     try {
-        const url = `https://www.googleapis.com/drive/v3/files?q='${FOLDERS.poetry}'+in+parents&key=${API_KEY}&fields=files(id,name,webViewLink,mimeType)`;
-        const response = await fetch(url);
-        const data = await response.json();
+        const files = await fetchDriveFiles(FOLDERS.poetry);
         
-        if (data.files && data.files.length > 0) {
+        if (files.length > 0) {
             container.innerHTML = '';
             
-            data.files.forEach(file => {
+            files.forEach(file => {
                 const item = document.createElement('div');
                 item.className = 'content-item';
                 item.onclick = () => window.open(file.webViewLink, '_blank');
                 
+                // Clean file name (remove extension)
+                const displayName = file.name
+                    .replace('.pdf', '')
+                    .replace('.txt', '')
+                    .replace('.docx', '');
+                
                 item.innerHTML = `
-                    <h3>📝 ${file.name}</h3>
+                    <h3>📝 ${displayName}</h3>
                     <p>کلک کریں پڑھنے کے لیے</p>
                 `;
                 
@@ -275,30 +331,36 @@ async function loadPoetry() {
         }
     } catch (error) {
         console.error('Error loading poetry:', error);
-        container.innerHTML = '<div class="loading">شاعری لوڈ کرنے میں مسئلہ ہوا</div>';
+        container.innerHTML = '<div class="loading">❌ شاعری لوڈ کرنے میں مسئلہ ہوا</div>';
     }
 }
 
-// Load Codewords from Google Drive
+// ============================================
+// CODEWORDS SECTION
+// ============================================
+
 async function loadCodewords() {
     const container = document.getElementById('codewords-container');
     container.innerHTML = '<div class="loading">کوڈ ورڈز لوڈ ہو رہے ہیں...</div>';
     
     try {
-        const url = `https://www.googleapis.com/drive/v3/files?q='${FOLDERS.codewords}'+in+parents&key=${API_KEY}&fields=files(id,name,webViewLink,mimeType)`;
-        const response = await fetch(url);
-        const data = await response.json();
+        const files = await fetchDriveFiles(FOLDERS.codewords);
         
-        if (data.files && data.files.length > 0) {
+        if (files.length > 0) {
             container.innerHTML = '';
             
-            data.files.forEach(file => {
+            files.forEach(file => {
                 const item = document.createElement('div');
                 item.className = 'content-item';
                 item.onclick = () => window.open(file.webViewLink, '_blank');
                 
+                const displayName = file.name
+                    .replace('.pdf', '')
+                    .replace('.txt', '')
+                    .replace('.docx', '');
+                
                 item.innerHTML = `
-                    <h3>🔐 ${file.name}</h3>
+                    <h3>🔐 ${displayName}</h3>
                     <p>کلک کریں پڑھنے کے لیے</p>
                 `;
                 
@@ -309,30 +371,36 @@ async function loadCodewords() {
         }
     } catch (error) {
         console.error('Error loading codewords:', error);
-        container.innerHTML = '<div class="loading">کوڈ ورڈز لوڈ کرنے میں مسئلہ ہوا</div>';
+        container.innerHTML = '<div class="loading">❌ کوڈ ورڈز لوڈ کرنے میں مسئلہ ہوا</div>';
     }
 }
 
-// Load About from Google Drive
+// ============================================
+// ABOUT SECTION
+// ============================================
+
 async function loadAbout() {
     const container = document.getElementById('about-container');
     container.innerHTML = '<div class="loading">معلومات لوڈ ہو رہی ہیں...</div>';
     
     try {
-        const url = `https://www.googleapis.com/drive/v3/files?q='${FOLDERS.about}'+in+parents&key=${API_KEY}&fields=files(id,name,webViewLink,mimeType)`;
-        const response = await fetch(url);
-        const data = await response.json();
+        const files = await fetchDriveFiles(FOLDERS.about);
         
-        if (data.files && data.files.length > 0) {
+        if (files.length > 0) {
             container.innerHTML = '';
             
-            data.files.forEach(file => {
+            files.forEach(file => {
                 const item = document.createElement('div');
                 item.className = 'content-item';
                 item.onclick = () => window.open(file.webViewLink, '_blank');
                 
+                const displayName = file.name
+                    .replace('.pdf', '')
+                    .replace('.txt', '')
+                    .replace('.docx', '');
+                
                 item.innerHTML = `
-                    <h3>📄 ${file.name}</h3>
+                    <h3>📄 ${displayName}</h3>
                     <p>کلک کریں پڑھنے کے لیے</p>
                 `;
                 
@@ -343,6 +411,43 @@ async function loadAbout() {
         }
     } catch (error) {
         console.error('Error loading about:', error);
-        container.innerHTML = '<div class="loading">معلومات لوڈ کرنے میں مسئلہ ہوا</div>';
+        container.innerHTML = '<div class="loading">❌ معلومات لوڈ کرنے میں مسئلہ ہوا</div>';
     }
 }
+
+// ============================================
+// AUTO-REFRESH (Every 5 minutes)
+// ============================================
+
+setInterval(() => {
+    console.log('🔄 Auto-refreshing content...');
+    
+    // Check which section is active and reload it
+    if (document.getElementById('novels-section').classList.contains('active')) {
+        loadEpisodes();
+    } else if (document.getElementById('poetry-section').classList.contains('active')) {
+        loadPoetry();
+    } else if (document.getElementById('codewords-section').classList.contains('active')) {
+        loadCodewords();
+    } else if (document.getElementById('about-section').classList.contains('active')) {
+        loadAbout();
+    }
+}, 5 * 60 * 1000); // 5 minutes
+
+// ============================================
+// UTILITY FUNCTIONS
+// ============================================
+
+// Clear all purchased episodes (for testing)
+function clearPurchases() {
+    if (confirm('کیا آپ واقعی تمام خریداری مٹانا چاہتے ہیں؟')) {
+        localStorage.removeItem('purchased_episodes');
+        purchasedEpisodes = [];
+        loadEpisodes();
+        alert('✅ تمام خریداری مٹا دی گئی');
+    }
+}
+
+console.log('✅ Novelistan script loaded successfully!');
+console.log('📚 Folders configured:', FOLDERS);
+console.log('🔑 API Key configured:', API_KEY ? 'Yes' : 'No');
