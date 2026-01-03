@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -21,7 +21,6 @@
             direction: rtl;
         }
 
-        /* Home Screen Styling */
         .home-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -86,28 +85,15 @@
         }
 
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Categories Grid */
         .categories-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -166,7 +152,6 @@
             line-height: 1.6;
         }
 
-        /* Hidden Sections */
         .content-section {
             display: none;
             max-width: 1400px;
@@ -212,7 +197,6 @@
             font-weight: bold;
         }
 
-        /* Novel Episodes Grid */
         .episodes-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -295,7 +279,6 @@
             color: white;
         }
 
-        /* Payment Info Box */
         .payment-info {
             background: linear-gradient(135deg, #FFF3CD 0%, #FFE8A1 100%);
             padding: 30px;
@@ -321,7 +304,6 @@
             font-size: 20px;
         }
 
-        /* WhatsApp Buttons */
         .whatsapp-container {
             display: flex;
             gap: 20px;
@@ -349,7 +331,6 @@
             box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6);
         }
 
-        /* Content Items (Poetry, Codewords, About) */
         .content-items {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -383,7 +364,6 @@
             line-height: 1.8;
         }
 
-        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -413,14 +393,8 @@
         }
 
         @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .modal-content h2 {
@@ -474,7 +448,6 @@
             background: #45a049;
         }
 
-        /* Loading Spinner */
         .loading {
             text-align: center;
             padding: 60px;
@@ -482,36 +455,17 @@
             font-size: 20px;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .site-title {
-                font-size: 42px;
-            }
-
-            .site-tagline {
-                font-size: 22px;
-            }
-
-            .welcome-text {
-                font-size: 16px;
-            }
-
-            .category-title {
-                font-size: 26px;
-            }
-
-            .categories-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .episodes-grid {
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            }
+            .site-title { font-size: 42px; }
+            .site-tagline { font-size: 22px; }
+            .welcome-text { font-size: 16px; }
+            .category-title { font-size: 26px; }
+            .categories-grid { grid-template-columns: 1fr; }
+            .episodes-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
         }
     </style>
 </head>
 <body>
-    <!-- Home Screen -->
     <div id="home-screen" class="home-container">
         <div class="cover-section">
             <img src="https://drive.google.com/uc?export=view&id=18SlPABsEdm_mndblVL9xHUwCARh6ye7x" alt="Novelistan Cover" class="cover-image">
@@ -568,7 +522,6 @@
         </div>
     </div>
 
-    <!-- Novels Section -->
     <div id="novels-section" class="content-section">
         <button class="back-btn" onclick="showHome()">← واپس ہوم پر</button>
         
@@ -594,51 +547,33 @@
             </div>
         </div>
 
-        <div class="episodes-grid" id="episodes-container">
-            <!-- Episodes will be loaded here by JavaScript -->
-        </div>
+        <div class="episodes-grid" id="episodes-container"></div>
     </div>
 
-    <!-- Poetry Section -->
     <div id="poetry-section" class="content-section">
         <button class="back-btn" onclick="showHome()">← واپس ہوم پر</button>
-        
         <div class="section-header">
             <h2 class="section-title">🌟 شاعری (مکمل مفت)</h2>
         </div>
-
-        <div class="content-items" id="poetry-container">
-            <!-- Poetry items will be loaded here -->
-        </div>
+        <div class="content-items" id="poetry-container"></div>
     </div>
 
-    <!-- Codewords Section -->
     <div id="codewords-section" class="content-section">
         <button class="back-btn" onclick="showHome()">← واپس ہوم پر</button>
-        
         <div class="section-header">
             <h2 class="section-title">🔐 کوڈ ورڈز (مکمل مفت)</h2>
         </div>
-
-        <div class="content-items" id="codewords-container">
-            <!-- Codewords will be loaded here -->
-        </div>
+        <div class="content-items" id="codewords-container"></div>
     </div>
 
-    <!-- About Section -->
     <div id="about-section" class="content-section">
         <button class="back-btn" onclick="showHome()">← واپس ہوم پر</button>
-        
         <div class="section-header">
             <h2 class="section-title">👤 مصنف کے بارے میں</h2>
         </div>
-
-        <div class="content-items" id="about-container">
-            <!-- About content will be loaded here -->
-        </div>
+        <div class="content-items" id="about-container"></div>
     </div>
 
-    <!-- Payment Modal -->
     <div id="payment-modal" class="modal">
         <div class="modal-content">
             <h2>🔒 پیمنٹ درکار ہے</h2>
@@ -652,7 +587,6 @@
         </div>
     </div>
 
-    <!-- Code Entry Modal -->
     <div id="code-modal" class="modal">
         <div class="modal-content">
             <h2>🔑 کوڈ ورڈ درج کریں</h2>
