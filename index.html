@@ -11,18 +11,15 @@
         body { font-family: 'Noto Nastaliq Urdu', serif; background: var(--bg); color: var(--text); }
         .container { max-width: 1200px; margin: 0 auto; padding: 15px; }
         
-        /* Cover Section Fixed */
         .cover-section { width: 100%; height: 280px; border-radius: 20px; overflow: hidden; position: relative; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid #334155; }
         .cover-image { width: 100%; height: 100%; object-fit: cover; }
         .cover-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
 
-        /* Categories Grid */
         .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; }
         .card { background: var(--card); border-radius: 18px; padding: 12px; text-align: center; cursor: pointer; border: 1px solid #334155; transition: 0.3s; overflow: hidden; }
         .card:hover { transform: translateY(-5px); border-color: var(--accent); }
         .card img { width: 100%; height: 160px; object-fit: cover; border-radius: 12px; margin-bottom: 10px; display: block; }
 
-        /* Sections */
         .content-section { display: none; }
         .active { display: block; animation: fadeIn 0.4s ease-in; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -32,7 +29,6 @@
 
         .btn-back { background: #f1f5f9; color: #0f172a; padding: 10px 25px; border-radius: 10px; border: none; cursor: pointer; margin-bottom: 20px; font-weight: bold; }
         
-        /* Modal Styles */
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
         .modal.active { display: flex; }
         .modal-content { background: white; color: #1e293b; padding: 30px; border-radius: 20px; width: 100%; max-width: 400px; text-align: center; }
@@ -43,7 +39,7 @@
 
     <div class="container" id="home-screen">
         <div class="cover-section">
-            <img src="https://lh3.googleusercontent.com/d/1jeO58Sf8-w5fx5SPQZG8LqJjm7QfPHTe5" class="cover-image" alt="ناولستان">
+            <img src="https://via.placeholder.com/800x280/1e293b/f8fafc?text=Your+Cover+Image" class="cover-image" alt="ناولستان">
             <div class="cover-overlay">
                 <h1 style="font-size: 3rem;">ناولستان</h1>
                 <p style="font-size: 1.2rem;">ناول: بازگشتِ عشق</p>
@@ -51,19 +47,19 @@
         </div>
         <div class="categories-grid">
             <div class="card" onclick="showSection('novels')">
-                <img src="https://lh3.googleusercontent.com/d/1jeO58Sf8-w5fx5SPQZG8LqJjm7QfPHTe6" alt="Novel">
+                <img src="https://via.placeholder.com/300x160/1e293b/f8fafc?text=Novel+Image" alt="Novel">
                 <h3>📖 ناول پڑھیں</h3>
             </div>
             <div class="card" onclick="showSection('poetry')">
-                <img src="https://lh3.googleusercontent.com/d/1jeO58Sf8-w5fx5SPQZG8LqJjm7QfPHTe7" alt="Poetry">
+                <img src="https://via.placeholder.com/300x160/1e293b/f8fafc?text=Poetry+Image" alt="Poetry">
                 <h3>📜 اردو شاعری</h3>
             </div>
             <div class="card" onclick="showSection('codewords')">
-                <img src="https://lh3.googleusercontent.com/d/1jeO58Sf8-w5fx5SPQZG8LqJjm7QfPHTe8" alt="Codes">
+                <img src="https://via.placeholder.com/300x160/1e293b/f8fafc?text=Codewords+Image" alt="Codes">
                 <h3>🔐 کوڈ ورڈز</h3>
             </div>
             <div class="card" onclick="showSection('about')">
-                <img src="https://lh3.googleusercontent.com/d/1jeO58Sf8-w5fx5SPQZG8LqJjm7QfPHTe9" alt="Author">
+                <img src="https://via.placeholder.com/300x160/1e293b/f8fafc?text=Author+Image" alt="Author">
                 <h3>👤 مصنف</h3>
             </div>
         </div>
