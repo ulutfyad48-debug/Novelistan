@@ -3,107 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="ناولستان: اردو ناولز، بہترین شاعری اور پریمیم ادبی مواد کا مستند مرکز۔">
+    <meta name="description" content="ناولستان: اردو ناولز اور پریمیم ادبی مواد">
     <title>ناولستان - پریمیم پورٹل</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        :root { --bg: #0a0e27; --card: #1a1f3a; --accent: #ff0a54; --accent2: #00d9ff; --text: #ffffff; }
+        :root { 
+            --bg: #0a0e27; 
+            --card: #1a1f3a; 
+            --accent: #ff0a54; 
+            --accent2: #00d9ff; 
+            --text: #ffffff;
+            --success: #2ed573;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Noto Nastaliq Urdu', serif; 
             background: var(--bg); color: var(--text);
             min-height: 100vh; line-height: 1.6;
-            content-visibility: auto;
+            overflow-x: hidden;
         }
         .container { max-width: 500px; margin: 0 auto; padding: 15px; }
         
-        /* Header Optimized for CLS */
+        /* Header */
         .header { 
             text-align: center; border-bottom: 3px solid var(--accent); 
             border-radius: 0 0 30px 30px; margin-bottom: 25px;
             box-shadow: 0 10px 30px rgba(255,10,84,0.2);
-            overflow: hidden; position: relative;
-            background: var(--card);
+            background: var(--card); overflow: hidden;
         }
-        .header-cover { width: 100%; height: 220px; object-fit: cover; display: block; aspect-ratio: 16/9; }
-        .header-content { padding: 25px 10px; background: linear-gradient(to bottom, transparent, rgba(10,14,39,0.9)); margin-top: -70px; position: relative; }
-        .header h1 { font-size: 3rem; text-shadow: 0 0 15px rgba(255,10,84,0.6); cursor: pointer; }
+        .header-cover { width: 100%; height: 200px; object-fit: cover; }
+        .header-content { padding: 20px 10px; background: linear-gradient(to bottom, transparent, rgba(10,14,39,0.9)); margin-top: -60px; position: relative; }
+        .header h1 { font-size: 2.5rem; text-shadow: 0 0 15px rgba(255,10,84,0.6); cursor: pointer; }
 
-        .menu-grid { display: grid; gap: 15px; }
-        .nav-btn { background: var(--card); border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
-        .nav-btn:active { transform: scale(0.96); }
-        .nav-btn img { width: 100%; height: 160px; object-fit: cover; }
-        .nav-btn h3 { padding: 15px; text-align: center; font-size: 1.3rem; }
+        /* Navigation Grid */
+        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .nav-btn { background: var(--card); border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; transition: 0.2s; }
+        .nav-btn:active { transform: scale(0.95); }
+        .nav-btn img { width: 100%; height: 120px; object-fit: cover; }
+        .nav-btn h3 { padding: 12px; text-align: center; font-size: 1.1rem; }
 
+        /* Items Display */
         .items-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .card { background: #1a1f3a; padding: 15px 10px; border-radius: 12px; text-align: center; border: 1px solid #3a3f5a; cursor: pointer; }
-        .card.locked { opacity: 0.7; border-style: dashed; border-color: var(--accent); }
+        .card.locked { border-style: dashed; border-color: var(--accent); opacity: 0.8; }
+        
+        .btn-back { background: var(--accent); color: #fff; border: none; padding: 12px; width: 100%; border-radius: 10px; margin-bottom: 15px; cursor: pointer; font-weight: bold; font-family: inherit; }
 
+        /* Puzzle Section UI */
+        .puzzle-section { background: linear-gradient(135deg, #1a1f3a 0%, #0a0e27 100%); padding: 20px; border-radius: 20px; text-align: center; border: 1px solid var(--accent2); }
+        .timer-circle { width: 80px; height: 80px; border-radius: 50%; border: 4px solid var(--accent); line-height: 72px; font-size: 28px; margin: 0 auto 15px; color: var(--accent); font-weight: bold; }
+        .q-text { font-size: 1.2rem; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; margin-bottom: 20px; border-right: 4px solid var(--accent2); }
+        .btn-opt { background: #2d2d3a; color: white; border: 1px solid #444; width: 100%; padding: 12px; margin: 5px 0; border-radius: 10px; cursor: pointer; font-family: inherit; }
+        
         /* Modals */
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
         .modal.active { display: flex; }
-        .modal-box { background: #1a1f3a; padding: 25px; border-radius: 20px; width: 100%; max-width: 380px; text-align: center; border: 2px solid var(--accent); }
-        
+        .modal-box { background: #1a1f3a; padding: 25px; border-radius: 20px; width: 100%; max-width: 350px; text-align: center; border: 2px solid var(--accent); }
         .wa-container { display: flex; gap: 8px; margin: 15px 0; }
-        .btn-wa { background: #16a34a; color: #fff; text-decoration: none; padding: 12px; border-radius: 10px; flex: 1; font-size: 0.9rem; font-weight: bold; }
-        .btn-back { background: var(--accent); color: #fff; border: none; padding: 12px; width: 100%; border-radius: 10px; margin-bottom: 15px; cursor: pointer; font-weight: bold; }
-        
-        input { width: 100%; padding: 12px; margin: 10px 0; background: #000; color: #fff; border: 1px solid var(--accent2); border-radius: 8px; text-align: center; font-size: 1.2rem; }
-        .btn-verify { background: var(--accent2); border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; color: #000; }
-        .close-btn { margin-top: 15px; cursor: pointer; display: inline-block; color: var(--accent); font-weight: bold; }
-        
-        .novel-list-card { background: var(--card); padding: 25px; border-radius: 15px; border: 1px solid #3a3f5a; margin-bottom: 15px; text-align: center; }
-        footer { text-align: center; padding: 20px; opacity: 0.6; font-size: 0.8rem; }
+        .btn-wa { background: #16a34a; color: #fff; text-decoration: none; padding: 12px; border-radius: 10px; flex: 1; font-size: 0.8rem; font-weight: bold; }
+        input { width: 100%; padding: 12px; margin: 10px 0; background: #000; color: #fff; border: 1px solid var(--accent2); border-radius: 8px; text-align: center; }
+
+        footer { text-align: center; padding: 20px; opacity: 0.5; font-size: 0.8rem; }
     </style>
 </head>
 <body>
+
     <div id="home-screen" class="container">
         <header class="header">
-            <img src="https://drive.google.com/thumbnail?id=18SlPABsEdm_mndblVL9xHUwCARh6ye7x&sz=w800" alt="Cover" class="header-cover" loading="eager">
+            <img src="https://drive.google.com/thumbnail?id=18SlPABsEdm_mndblVL9xHUwCARh6ye7x&sz=w800" class="header-cover">
             <div class="header-content">
                 <h1 onclick="location.reload()">ناولستان</h1>
                 <p>✨ پریمیم اردو پورٹل ✨</p>
             </div>
         </header>
+
         <div class="menu-grid">
             <div class="nav-btn" onclick="openSection('novel')">
-                <img src="https://drive.google.com/thumbnail?id=1A6cQPJd5qacANztlmKyU6a5xiKgNAUuz&sz=w400" alt="Novel" loading="lazy">
+                <img src="https://drive.google.com/thumbnail?id=1A6cQPJd5qacANztlmKyU6a5xiKgNAUuz&sz=w400">
                 <h3>📖 ناول پڑھیں</h3>
             </div>
             <div class="nav-btn" onclick="openSection('poetry')">
-                <img src="https://drive.google.com/thumbnail?id=1jeO58Sf8-w5fx5SPQZG8LqJjm7QfPHTe&sz=w400" alt="Poetry" loading="lazy">
+                <img src="https://drive.google.com/thumbnail?id=1jeO58Sf8-w5fx5SPQZG8LqJjm7QfPHTe&sz=w400">
                 <h3>📜 اردو شاعری</h3>
             </div>
+            <div class="nav-btn" onclick="openSection('puzzle')">
+                <img src="https://drive.google.com/thumbnail?id=11c5Imzwd7sOJ_yEL6gvgDQy85WW0Mvsi&sz=w400">
+                <h3>🎮 پزل گیم</h3>
+            </div>
             <div class="nav-btn" onclick="openSection('about')">
-                <img src="https://drive.google.com/thumbnail?id=1bAfC0S2euvxZQKuawj_nVQGOiK9S41N7&sz=w400" alt="Author" loading="lazy">
+                <img src="https://drive.google.com/thumbnail?id=1bAfC0S2euvxZQKuawj_nVQGOiK9S41N7&sz=w400">
                 <h3>👤 مصنف</h3>
             </div>
         </div>
     </div>
 
-    <div id="novel-list-screen" class="container" style="display:none;">
-        <button class="btn-back" onclick="location.reload()">🏠 ہوم پیج</button>
-        <div id="novels-container"></div>
+    <div id="content-screen" class="container" style="display:none;">
+        <button class="btn-back" onclick="goHome()">🏠 ہوم پیج</button>
+        <h2 id="section-title" style="text-align:center; margin-bottom:15px;"></h2>
+        <div id="items-list" class="items-grid"></div>
     </div>
 
-    <div id="content-screen" class="container" style="display:none;">
-        <button class="btn-back" onclick="goBack()">⬅️ واپس</button>
-        <h2 id="section-title" style="text-align:center; margin-bottom:20px; color:var(--accent);"></h2>
-        <div id="items-list" class="items-grid"></div>
+    <div id="puzzle-screen" class="container" style="display:none;">
+        <button class="btn-back" onclick="goHome()">🏠 ہوم پیج</button>
+        <div id="puzzle-intro" class="puzzle-section">
+            <h2>🎮 پزل چیلنج</h2>
+            <p style="margin:10px 0;">فیس: 50 روپے | انعام: 1000 روپے</p>
+            <button onclick="contactPuzzle()" style="background:#16a34a; border:none; color:white; padding:12px; width:100%; border-radius:10px; margin-top:10px; cursor:pointer; font-weight:bold;">📱 واٹس ایپ سے کوڈ لیں</button>
+            <button onclick="startPuzzleEntry()" style="background:var(--accent2); border:none; color:black; padding:12px; width:100%; border-radius:10px; margin-top:10px; cursor:pointer; font-weight:bold;">🔑 میرے پاس کوڈ ہے</button>
+        </div>
+
+        <div id="puzzle-game" class="puzzle-section" style="display:none;">
+            <div class="timer-circle" id="timer">60</div>
+            <div id="q-content" class="q-text">لوڈنگ...</div>
+            <div id="options-box"></div>
+        </div>
     </div>
 
     <div id="pay-modal" class="modal">
         <div class="modal-box">
-            <h2>🔒 لاک</h2>
-            <p id="pay-info" style="margin:15px 0; white-space: pre-line;"></p>
+            <h2 id="lock-title">🔒 لاک قسط</h2>
+            <p id="pay-info" style="margin:15px 0;"></p>
             <div class="wa-container">
-                <a id="wa-link-1" href="#" class="btn-wa" target="_blank">واٹس ایپ 1</a>
-                <a id="wa-link-2" href="#" class="btn-wa" target="_blank">واٹس ایپ 2</a>
+                <a id="wa-1" href="#" class="btn-wa" target="_blank">واٹس ایپ 1</a>
+                <a id="wa-2" href="#" class="btn-wa" target="_blank">واٹس ایپ 2</a>
             </div>
-            <button onclick="showCodeInput()" style="background:none; border:1px solid var(--accent2); color:var(--accent2); padding:10px; width:100%; border-radius:8px; cursor:pointer;">🔑 میرے پاس کوڈ ہے</button>
-            <p onclick="closeModals()" class="close-btn">❌ بند کریں</p>
+            <button onclick="showCodeInput()" style="background:none; border:1px solid var(--accent2); color:var(--accent2); padding:10px; width:100%; border-radius:8px; cursor:pointer;">🔑 کوڈ درج کریں</button>
+            <p onclick="closeModals()" style="margin-top:15px; cursor:pointer; color:var(--accent);">❌ بند کریں</p>
         </div>
     </div>
 
@@ -111,12 +138,213 @@
         <div class="modal-box">
             <h2>🔑 کوڈ درج کریں</h2>
             <input type="text" id="user-code" placeholder="XXXXXX">
-            <button class="btn-verify" onclick="checkAccess()">✅ تصدیق کریں</button>
-            <p onclick="closeModals()" class="close-btn">❌ کینسل</p>
+            <button onclick="verifyCode()" style="background:var(--accent2); border:none; width:100%; padding:12px; border-radius:8px; font-weight:bold; cursor:pointer;">✅ تصدیق کریں</button>
+            <p onclick="closeModals()" style="margin-top:15px; cursor:pointer;">❌ منسوخ</p>
         </div>
     </div>
 
-    <footer>&copy; 2026 Novelistan - Premium Urdu Portal</footer>
-    <script src="script.js"></script>
+    <footer>&copy; 2026 Novelistan - Premium Portal</footer>
+
+    <script>
+        // ==========================================
+        // ⚠️ پزل ٹائمر سیٹنگ (یہاں سے وقت بدلیں)
+        // ==========================================
+        const GAME_START_HOUR = 20; // رات 8 بجے شروع
+        const GAME_END_HOUR = 23;   // رات 11 بجے ختم
+        // ==========================================
+
+        const API_KEY = 'AIzaSyCMppjIJi2_xBi3oLVXN0XjdANMX10xmwE';
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwk4hNSimgU__x1PHwrjJZe_596-2Ay-y6uTHamx7zYlSZP1MGg_dQXNtw73_f2VIKh/exec";
+        const WA_NUMBERS = ['923159226260', '923125540048'];
+        const EP_NUMBER = "03359079528";
+
+        const FOLDERS = {
+            poetry: '1Bje7U53wmDHhuUrAvj-NaHDAXAfMiG_h',
+            about: '1QHIFfbqFIcpzHKEwEzPlRovHrC4t7wkX',
+            novel: '1AnTGqNqtKQxRHKRXZaGxVy4H7EtlfQjI'
+        };
+
+        let unlocked = JSON.parse(localStorage.getItem('nov_unlocked')) || [];
+        let currentPkg = "";
+        let puzzles = [];
+        let pIndex = 0;
+        let timer;
+
+        function openSection(mode) {
+            document.getElementById('home-screen').style.display = 'none';
+            if(mode === 'puzzle') {
+                checkPuzzleTime();
+            } else {
+                document.getElementById('content-screen').style.display = 'block';
+                document.getElementById('section-title').innerText = mode === 'novel' ? "📖 ناول کی اقساط" : "ادبی مواد";
+                loadFiles(mode);
+            }
+        }
+
+        function goHome() { location.reload(); }
+
+        async function loadFiles(mode) {
+            const list = document.getElementById('items-list');
+            list.innerHTML = "⏳ لوڈ ہو رہا ہے...";
+            const fId = FOLDERS[mode];
+            
+            try {
+                const res = await fetch(`https://www.googleapis.com/drive/v3/files?q='${fId}'+in+parents+and+trashed=false&key=${API_KEY}&fields=files(id,name,webViewLink,mimeType)`);
+                const data = await res.json();
+                
+                if(mode === 'novel') {
+                    renderNovels(data.files);
+                } else {
+                    renderGeneral(data.files);
+                }
+            } catch (e) { list.innerHTML = "⚠️ نیٹ ورک ایرر"; }
+        }
+
+        function renderNovels(files) {
+            const list = document.getElementById('items-list');
+            list.innerHTML = "";
+            // اقساط کو ترتیب دینا (1 سے 100)
+            for(let i=1; i<=100; i++) {
+                let pkg = getPkgInfo(i);
+                let isFree = i <= 10 || unlocked.includes(pkg.id);
+                
+                const div = document.createElement('div');
+                div.className = `card ${isFree ? '' : 'locked'}`;
+                div.innerHTML = `قسط ${i}<br><small>${isFree ? '🔓 اوپن' : '🔒 لاک'}</small>`;
+                div.onclick = () => isFree ? openFile(i, FOLDERS.novel) : showLock(i, pkg);
+                list.appendChild(div);
+            }
+        }
+
+        function renderGeneral(files) {
+            const list = document.getElementById('items-list');
+            list.innerHTML = files.map(f => `
+                <div class="card" onclick="window.open('${f.webViewLink}', '_blank')">
+                    ${f.name.split('.')[0]}
+                </div>
+            `).join('');
+        }
+
+        function getPkgInfo(n) {
+            if (n <= 10) return { id: "FREE", price: 0 };
+            if (n <= 50) return { id: "P1_" + Math.ceil((n-10)/5), price: 50 };
+            return { id: "P2_PRO", price: 100 };
+        }
+
+        function showLock(i, pkg) {
+            currentPkg = pkg.id;
+            document.getElementById('pay-info').innerText = `قسط نمبر ${i} لاک ہے۔\nقیمت: ${pkg.price} روپے\nایزی پیسہ: ${EP_NUMBER}`;
+            const msg = encodeURIComponent(`سلام! مجھے قسط ${i} (Package: ${pkg.id}) خریدنی ہے۔`);
+            document.getElementById('wa-1').href = `https://wa.me/${WA_NUMBERS[0]}?text=${msg}`;
+            document.getElementById('wa-2').href = `https://wa.me/${WA_NUMBERS[1]}?text=${msg}`;
+            document.getElementById('pay-modal').classList.add('active');
+        }
+
+        async function openFile(name, fId) {
+            try {
+                const res = await fetch(`https://www.googleapis.com/drive/v3/files?q='${fId}'+in+parents+and+name+contains+'${name}'+and+trashed=false&key=${API_KEY}&fields=files(webViewLink)`);
+                const data = await res.json();
+                if(data.files.length) window.open(data.files[0].webViewLink, '_blank');
+                else alert("فائل ابھی دستیاب نہیں!");
+            } catch(e) { alert("ایرر!"); }
+        }
+
+        // --- Puzzle Logic ---
+        function checkPuzzleTime() {
+            const hour = new Date().getHours();
+            if(hour >= GAME_START_HOUR && hour < GAME_END_HOUR) {
+                document.getElementById('puzzle-screen').style.display = 'block';
+            } else {
+                alert(`پزل گیم کا وقت رات ${GAME_START_HOUR}:00 سے ${GAME_END_HOUR}:00 بجے تک ہے۔`);
+                goHome();
+            }
+        }
+
+        function contactPuzzle() {
+            const msg = encodeURIComponent("سلام! مجھے پزل گیم کا کوڈ چاہیے۔ میں نے 50 روپے ایزی پیسہ کر دیے ہیں۔");
+            window.open(`https://wa.me/${WA_NUMBERS[0]}?text=${msg}`, '_blank');
+        }
+
+        async function startPuzzleEntry() {
+            const code = prompt("اپنا پزل کوڈ درج کریں:");
+            if(!code) return;
+            
+            // تصدیق (آپ کے Google Script سے)
+            try {
+                const res = await fetch(`${SCRIPT_URL}?action=verifyCode&code=${code.toUpperCase()}`);
+                const status = await res.text();
+                if(status === "SUCCESS") {
+                    document.getElementById('puzzle-intro').style.display = 'none';
+                    document.getElementById('puzzle-game').style.display = 'block';
+                    loadPuzzles();
+                } else alert("غلط یا استعمال شدہ کوڈ!");
+            } catch(e) { alert("کنکشن ایرر!"); }
+        }
+
+        async function loadPuzzles() {
+            const res = await fetch(`${SCRIPT_URL}?action=getPuzzles`);
+            puzzles = await res.json();
+            showQuestion();
+        }
+
+        function showQuestion() {
+            if(pIndex >= 5) return finishGame();
+            const q = puzzles[pIndex];
+            document.getElementById('q-content').innerText = q.q;
+            let html = "";
+            q.opts.forEach(opt => {
+                html += `<button class="btn-opt" onclick="checkAns('${opt}', '${q.ans}')">${opt}</button>`;
+            });
+            document.getElementById('options-box').innerHTML = html;
+            startTimer();
+        }
+
+        function checkAns(selected, correct) {
+            if(selected === correct) {
+                pIndex++;
+                clearInterval(timer);
+                showQuestion();
+            } else {
+                alert("غلط جواب! گیم ختم۔");
+                location.reload();
+            }
+        }
+
+        function startTimer() {
+            let timeLeft = 60;
+            document.getElementById('timer').innerText = timeLeft;
+            clearInterval(timer);
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').innerText = timeLeft;
+                if(timeLeft <= 0) {
+                    clearInterval(timer);
+                    alert("وقت ختم!");
+                    location.reload();
+                }
+            }, 1000);
+        }
+
+        function finishGame() {
+            alert("مبارک ہو! آپ جیت گئے۔ اسکرین شاٹ واٹس ایپ کریں۔");
+            location.reload();
+        }
+
+        // --- Auth Helpers ---
+        function showCodeInput() { closeModals(); document.getElementById('code-modal').classList.add('active'); }
+        function closeModals() { document.querySelectorAll('.modal').forEach(m => m.classList.remove('active')); }
+        function verifyCode() {
+            const input = document.getElementById('user-code').value.toUpperCase();
+            const d = new Date();
+            const correct = (currentPkg + d.getDate() + (d.getMonth() + 1) + "X").toUpperCase();
+            
+            if(input === correct) {
+                unlocked.push(currentPkg);
+                localStorage.setItem('nov_unlocked', JSON.stringify(unlocked));
+                alert("ان لاک ہو گیا!");
+                location.reload();
+            } else alert("غلط کوڈ!");
+        }
+    </script>
 </body>
 </html>
