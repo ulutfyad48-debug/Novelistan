@@ -1,36 +1,53 @@
-# Novelistan - Robots.txt
+# ==========================================
+# Novelistan - Robots.txt (Updated 2026)
 # https://ulutfyad48-debug.github.io/Novelistan/
+# ==========================================
 
 User-agent: *
 Allow: /
+Crawl-delay: 1
 
 # Sitemap Location
 Sitemap: https://ulutfyad48-debug.github.io/Novelistan/sitemap.xml
 
-# Crawl Delay
-Crawl-delay: 1
+# ------------------------------------------
+# Block AI Crawlers (Protect your literary content)
+# ------------------------------------------
+User-agent: GPTBot
+Disallow: /
 
-# Disallow admin sections (if any)
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+# ------------------------------------------
+# Disallow sensitive/private paths
+# ------------------------------------------
 Disallow: /admin/
 Disallow: /private/
+Disallow: /config/
+Disallow: /tmp/
 
-# Allow all major search engines
+# ------------------------------------------
+# Optimized for Search Engines
+# ------------------------------------------
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-User-agent: Slurp
-Allow: /
-
 User-agent: DuckDuckBot
 Allow: /
 
-User-agent: Baiduspider
-Allow: /
-
-# Block bad bots
+# ------------------------------------------
+# Block Bad Bots & SEO Spiders
+# ------------------------------------------
 User-agent: AhrefsBot
 Disallow: /
 
@@ -39,3 +56,11 @@ Disallow: /
 
 User-agent: MJ12bot
 Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: Rogerbot
+Disallow: /
+
+# End of file
