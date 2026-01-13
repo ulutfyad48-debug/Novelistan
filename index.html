@@ -37,7 +37,7 @@
         .header-content { padding: 20px 10px; background: linear-gradient(to bottom, transparent, rgba(5,8,22,0.9)); margin-top: -60px; position: relative; }
         .header h1 { font-size: 2.8rem; text-shadow: 0 0 20px rgba(255,10,84,0.5); cursor: pointer; }
 
-        /* Notification Slider (Latest First) */
+        /* Notification Slider */
         .notif-section { margin-bottom: 25px; }
         .notif-title { font-size: 0.95rem; color: var(--accent2); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; font-weight: bold; }
         .notif-slider { 
@@ -76,7 +76,17 @@
         .card.locked { border-style: dashed; border-color: var(--accent); opacity: 0.8; }
         .btn-back { background: var(--accent); color: white; border: none; padding: 15px; width: 100%; border-radius: 12px; margin-bottom: 20px; cursor: pointer; font-weight: bold; font-family: inherit; }
 
-        /* Payment Modal (Updated Numbers) */
+        /* Novel Selection */
+        .novel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .novel-card { 
+            background: var(--card); border-radius: 15px; padding: 20px; 
+            text-align: center; cursor: pointer; border: 2px solid var(--glass);
+            transition: 0.3s;
+        }
+        .novel-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .novel-card h3 { font-size: 1.3rem; margin-bottom: 5px; }
+
+        /* Payment Modal */
         .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
         .modal.active { display: flex; }
         .modal-box { background: #1a1f3a; padding: 25px; border-radius: 25px; width: 100%; max-width: 380px; text-align: center; border: 2px solid var(--accent); }
@@ -128,10 +138,31 @@
         </div>
     </div>
 
-    <div id="content-screen" class="container" style="display:none;">
+    <div id="novel-select-screen" class="container" style="display:none;">
         <button class="btn-back" onclick="goHome()">🏠 ہوم پیج</button>
+        <h2 style="text-align:center; margin-bottom:20px;">📖 ناول منتخب کریں</h2>
+        <div class="novel-grid">
+            <div class="novel-card" onclick="openNovel('baz_ishq')">
+                <h3>🌹 باز عشق</h3>
+                <p style="font-size:0.85rem; opacity:0.8;">100 اقساط</p>
+            </div>
+            <div class="novel-card" onclick="openNovel('wo_jo_nazr_andaz')">
+                <h3>👁️ وہ جو نظر انداز بو گئے</h3>
+                <p style="font-size:0.85rem; opacity:0.8;">نیا ناول</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="content-screen" class="container" style="display:none;">
+        <button class="btn-back" onclick="backToNovelSelect()">⬅️ واپس</button>
         <h2 id="section-title" style="text-align:center; margin-bottom:20px;"></h2>
         <div id="items-list" class="items-grid"></div>
+    </div>
+
+    <div id="other-content-screen" class="container" style="display:none;">
+        <button class="btn-back" onclick="goHome()">🏠 ہوم پیج</button>
+        <h2 id="other-section-title" style="text-align:center; margin-bottom:20px;"></h2>
+        <div id="other-items-list" class="items-grid"></div>
     </div>
 
     <div id="pay-modal" class="modal">
@@ -169,11 +200,14 @@
         const FOLDERS = {
             poetry: '1Bje7U53wmDHhuUrAvj-NaHDAXAfMiG_h',
             about: '1QHIFfbqFIcpzHKEwEzPlRovHrC4t7wkX',
-            novel: '1AnTGqNqtKQxRHKRXZaGxVy4H7EtlfQjI'
+            baz_ishq: '1AnTGqNqtKQxRHKRXZaGxVy4H7EtlfQjI',
+            wo_jo_nazr_andaz: '1kY-qWR-RvpdX8jPvJ-1j-OTgi6IUTgbz'
         };
 
         let unlocked = JSON.parse(localStorage.getItem('nov_unlocked')) || [];
         let currentPkg = "";
+        let currentNovel = "";
+        let currentEpisode = 0;
 
         window.onload = function() { loadNotifications(); };
 
@@ -194,58 +228,73 @@
         }
 
         function openSection(mode) {
-            document.getElementById('home-screen').style.display = 'none';
+            if(mode === 'novel') {
+                document.getElementById('home-screen').style.display = 'none';
+                document.getElementById('novel-select-screen').style.display = 'block';
+            } else {
+                document.getElementById('home-screen').style.display = 'none';
+                document.getElementById('other-content-screen').style.display = 'block';
+                document.getElementById('other-section-title').innerText = mode === 'poetry' ? "📜 اردو شاعری" : "👤 مصنف کے بارے میں";
+                loadOtherFiles(mode);
+            }
+        }
+
+        function openNovel(novelId) {
+            currentNovel = novelId;
+            document.getElementById('novel-select-screen').style.display = 'none';
             document.getElementById('content-screen').style.display = 'block';
-            document.getElementById('section-title').innerText = mode === 'novel' ? "📖 ناول کی اقساط" : "ادبی مواد";
-            loadFiles(mode);
+            document.getElementById('section-title').innerText = novelId === 'baz_ishq' ? "🌹 باز عشق - اقساط" : "👁️ وہ جو نظر انداز بو گئے";
+            renderNovels(novelId);
+        }
+
+        function backToNovelSelect() {
+            document.getElementById('content-screen').style.display = 'none';
+            document.getElementById('novel-select-screen').style.display = 'block';
         }
 
         function goHome() { location.reload(); }
 
-        async function loadFiles(mode) {
-            const list = document.getElementById('items-list');
+        async function loadOtherFiles(mode) {
+            const list = document.getElementById('other-items-list');
             list.innerHTML = "⏳ لوڈ ہو رہا ہے...";
             try {
                 const res = await fetch(`https://www.googleapis.com/drive/v3/files?q='${FOLDERS[mode]}'+in+parents+and+trashed=false&key=${API_KEY}&fields=files(id,name,webViewLink)`);
                 const data = await res.json();
-                if(mode === 'novel') renderNovels();
-                else renderGeneral(data.files);
+                list.innerHTML = data.files.map(f => `
+                    <div class="card" onclick="window.open('${f.webViewLink}', '_blank')">
+                        ${f.name.split('.')[0]}
+                    </div>
+                `).join('');
             } catch (e) { list.innerHTML = "⚠️ نیٹ ورک ایرر"; }
         }
 
-        function renderNovels() {
+        function renderNovels(novelId) {
             const list = document.getElementById('items-list');
             list.innerHTML = "";
             for(let i=1; i<=100; i++) {
-                let pkg = getPkgInfo(i);
+                let pkg = getPkgInfo(i, novelId);
                 let isFree = i <= 10 || unlocked.includes(pkg.id);
                 const div = document.createElement('div');
                 div.className = `card ${isFree ? '' : 'locked'}`;
                 div.innerHTML = `قسط ${i}<br><small>${isFree ? '🔓 اوپن' : '🔒 لاک'}</small>`;
-                div.onclick = () => isFree ? openFile(i, FOLDERS.novel) : showLock(i, pkg);
+                div.onclick = () => isFree ? openFile(i, FOLDERS[novelId]) : showLock(i, pkg, novelId);
                 list.appendChild(div);
             }
         }
 
-        function renderGeneral(files) {
-            const list = document.getElementById('items-list');
-            list.innerHTML = files.map(f => `
-                <div class="card" onclick="window.open('${f.webViewLink}', '_blank')">
-                    ${f.name.split('.')[0]}
-                </div>
-            `).join('');
-        }
-
-        function getPkgInfo(n) {
+        function getPkgInfo(n, novelId) {
             if (n <= 10) return { id: "FREE", price: 0 };
-            if (n <= 50) return { id: "P1_" + Math.ceil((n-10)/5), price: 50 };
-            return { id: "P2_PRO", price: 100 };
+            if (n <= 50) return { id: `${novelId}_P1_` + Math.ceil((n-10)/5), price: 50 };
+            return { id: `${novelId}_P2_PRO`, price: 100 };
         }
 
-        function showLock(i, pkg) {
+        function showLock(i, pkg, novelId) {
             currentPkg = pkg.id;
-            document.getElementById('pay-info').innerText = `قسط ${i} لاک ہے۔ اسے ان لاک کرنے کے لیے ${pkg.price} روپے اوپر دیے گئے کسی بھی نمبر پر ایزی پیسہ کریں۔`;
-            const msg = encodeURIComponent(`سلام! مجھے قسط ${i} خریدنی ہے۔`);
+            currentNovel = novelId;
+            currentEpisode = i;
+            const novelName = novelId === 'baz_ishq' ? 'باز عشق' : 'وہ جو نظر انداز بو گئے';
+            document.getElementById('pay-info').innerText = `${novelName} - قسط ${i} لاک ہے۔ اسے ان لاک کرنے کے لیے ${pkg.price} روپے اوپر دیے گئے کسی بھی نمبر پر ایزی پیسہ کریں۔`;
+            const msg = encodeURIComponent(`سلام! مجھے ${novelName} کی قسط ${i} خریدنی ہے۔`);
             document.getElementById('wa-1').href = `https://wa.me/${WA_NUMBERS[0]}?text=${msg}`;
             document.getElementById('wa-2').href = `https://wa.me/${WA_NUMBERS[1]}?text=${msg}`;
             document.getElementById('pay-modal').classList.add('active');
