@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>رابطہ کریں | ناولستان</title>
+
+    <!-- Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
     <style>
         body { font-family: 'Noto Nastaliq Urdu', serif; background: #050816; color: white; padding: 20px; line-height: 1.8; }
         .container { max-width: 800px; margin: auto; background: #111827; padding: 30px; border-radius: 15px; border: 1px solid #ff0a54; }
@@ -59,6 +63,12 @@
             <p><strong>مالک / ڈویلپر:</strong> ید اللہ (طالب علم)</p>
             <p><strong>مقام:</strong> پاکستان</p>
             <p><strong>زبان:</strong> اردو / انگریزی</p>
+        </div>
+
+        <!-- Turnstile Verification -->
+        <div class="contact-box" style="text-align:center;">
+            <p style="font-size:14px; opacity:0.7;">سیکیورٹی ویریفکیشن</p>
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAACOKTtxywJOjLxUm"></div>
         </div>
         
         <a href="index.html" class="back-btn">← ہوم پیج پر واپس جائیں</a>
