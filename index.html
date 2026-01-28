@@ -3,200 +3,1436 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-
-    <script src="https://pl28592628.effectivegatecpm.com/76/40/cd/7640cd213b7ae5aad895680d4c4ecfba.js"></script>
-
-    <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js');
-    }
-    </script>
+    <meta name="description" content="ناولستان - بہترین اردو ناول، اقساط، شاعری اور کہانیاں۔ مفت اور پریمیم اردو ادب کا سب سے بڑا پورٹل">
+    <meta name="keywords" content="اردو ناول, اردو کہانیاں, اردو شاعری, اردو افسانے, ناولستان, اردو کتابیں">
+    
+    <!-- PWA Meta Tags -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" href="icon-192.png">
     
+    <!-- Ad Scripts -->
+    <script src="https://pl28592355.effectivegatecpm.com/b4/80/77/b48077d15893279ce3505db67539d01d.js"></script>
     <meta name="google-adsense-account" content="ca-pub-1417987183063486">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1417987183063486" crossorigin="anonymous"></script>
+    
+    <!-- Verification Tags -->
     <meta name="msvalidate.01" content="901A6D8385FFD0A7BDB9FEF87896E584" />
     <meta name="yandex-verification" content="2044c85ab8b42086" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1417987183063486"
-         crossorigin="anonymous"></script>     
     <meta name="google-site-verification" content="u0HQvmeVKbyBWL1oaDDylFERp4bmJKpg-IT7i_U0CmE" />
     
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-F45XQV5C69"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-F45XQV5C69');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-F45XQV5C69');
     </script>
-
+    
     <title>ناولستان | بہترین اردو ناول، اقساط اور شاعری</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Almarai:wght@300;400;700&display=swap" rel="stylesheet">
     
     <style>
-        :root { 
-            --bg: #050816; 
-            --card: #111827; 
-            --accent: #ff0a54; 
-            --accent2: #00d9ff; 
+        :root {
+            --bg: #050816;
+            --card: #111827;
+            --accent: #ff0a54;
+            --accent2: #00d9ff;
             --text: #ffffff;
             --glass: rgba(255, 255, 255, 0.05);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Noto Nastaliq Urdu', serif; 
-            background: var(--bg); color: var(--text);
-            line-height: 1.6; overflow-x: hidden;
-        }
-        .container { max-width: 500px; margin: 0 auto; padding: 15px; }
-
-        /* Header */
-        .header { 
-            text-align: center; border-bottom: 3px solid var(--accent); 
-            border-radius: 0 0 30px 30px; margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(255,10,84,0.3);
-            background: var(--card); overflow: hidden;
-        }
-        .header-cover { width: 100%; height: 200px; object-fit: cover; }
-        .header-content { padding: 20px 10px; background: linear-gradient(to bottom, transparent, rgba(5,8,22,0.9)); margin-top: -60px; position: relative; }
-        .header h1 { font-size: 2.8rem; text-shadow: 0 0 20px rgba(255,10,84,0.5); cursor: pointer; }
-
-        /* Ad Container Style */
-        .ad-slot { text-align: center; margin: 20px 0; min-height: 50px; background: rgba(255,255,255,0.02); border-radius: 10px; }
-
-        /* Navigation Grid */
-        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .nav-btn { 
-            background: var(--card); border-radius: 20px; overflow: hidden; 
-            border: 1px solid var(--glass); transition: 0.3s; cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-        .nav-btn:active { transform: scale(0.95); }
-        .nav-btn img { width: 100%; height: 120px; object-fit: cover; filter: brightness(0.9); }
-        .nav-btn h3 { padding: 12px; text-align: center; font-size: 1.1rem; }
         
-        /* Buttons & Cards */
-        .card { background: var(--card); padding: 18px 10px; border-radius: 15px; text-align: center; border: 1px solid #3a3f5a; cursor: pointer; transition: 0.2s; }
-        .btn-back { background: var(--accent); color: white; border: none; padding: 15px; width: 100%; border-radius: 12px; margin-bottom: 20px; cursor: pointer; font-weight: bold; }
-        .items-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        [data-theme="light"] {
+            --bg: #f5f7fa;
+            --card: #ffffff;
+            --text: #1a1a1a;
+            --glass: rgba(0, 0, 0, 0.05);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: 'Almarai', 'Noto Nastaliq Urdu', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            overflow-x: hidden;
+            transition: var(--transition);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 15px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--glass);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Header Improvements */
+        .header {
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            background: var(--card);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header-cover {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            filter: brightness(0.8);
+        }
+        
+        .header-content {
+            padding: 20px 10px;
+            background: linear-gradient(to bottom, transparent, rgba(5,8,22,0.9));
+            margin-top: -60px;
+            position: relative;
+        }
+        
+        [data-theme="light"] .header-content {
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.9));
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            text-shadow: 0 0 20px rgba(255,10,84,0.5);
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        
+        /* Quick Actions Bar */
+        .quick-actions {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            padding: 15px;
+            background: var(--glass);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .action-btn {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px;
+            transition: var(--transition);
+            border-radius: 50%;
+        }
+        
+        .action-btn:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+        
+        /* Search Bar */
+        .search-container {
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border-radius: 25px;
+            border: 2px solid var(--glass);
+            background: var(--card);
+            color: var(--text);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(255,10,84,0.3);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+        
+        /* Notification Slider Improvements */
+        .notif-section {
+            margin-bottom: 25px;
+        }
+        
+        .notif-title {
+            font-size: 1rem;
+            color: var(--accent2);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+        
+        .notif-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 15px;
+            padding: 5px 0 15px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) var(--glass);
+        }
+        
+        .notif-slider::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .notif-slider::-webkit-scrollbar-track {
+            background: var(--glass);
+            border-radius: 10px;
+        }
+        
+        .notif-slider::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+        
+        .notif-card {
+            min-width: 85%;
+            scroll-snap-align: center;
+            background: var(--card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(255,10,84,0.2);
+            aspect-ratio: 16/9;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .notif-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255,10,84,0.3);
+        }
+        
+        /* Navigation Grid Improvements */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .nav-btn {
+            background: var(--card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass);
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+        
+        .nav-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .nav-btn img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            filter: brightness(0.8);
+            transition: var(--transition);
+        }
+        
+        .nav-btn:hover img {
+            filter: brightness(1);
+        }
+        
+        .nav-btn h3 {
+            padding: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        /* Badge for New Content */
+        .new-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            z-index: 1;
+        }
+        
+        /* Cards Grid Improvements */
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        .card {
+            background: var(--card);
+            padding: 20px 15px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid var(--glass);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 5px 15px rgba(255,10,84,0.2);
+            transform: translateY(-3px);
+        }
+        
+        .card.read {
+            opacity: 0.7;
+        }
+        
+        .card.read::after {
+            content: "✓";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: var(--accent2);
+            font-weight: bold;
+        }
+        
+        .card.favorite {
+            border-color: gold;
+        }
+        
+        .card.favorite::before {
+            content: "★";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: gold;
+        }
+        
+        .card.locked {
+            border-style: dashed;
+            border-color: var(--accent);
+            opacity: 0.8;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                var(--glass) 10px,
+                var(--glass) 20px
+            );
+        }
+        
+        /* Buttons */
+        .btn-back {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+        
+        .btn-back:hover {
+            background: #e0003a;
+            transform: translateY(-2px);
+        }
+        
+        /* Novel Selection */
+        .novel-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .novel-card {
+            background: var(--card);
+            border-radius: 15px;
+            padding: 25px 15px;
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid var(--glass);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .novel-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, var(--accent), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .novel-card:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .novel-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .novel-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Progress Indicator */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--glass);
+            border-radius: 2px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--accent2);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        /* Payment Modal Improvements */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-box {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 25px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            border: 2px solid var(--accent);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        
+        .ep-table {
+            background: var(--glass);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 1px solid var(--accent2);
+        }
+        
+        .ep-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--glass);
+            font-size: 0.9rem;
+        }
+        
+        .wa-btns {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .btn-wa {
+            background: #16a34a;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        
+        .btn-wa:hover {
+            background: #128c3e;
+            transform: translateY(-2px);
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            background: var(--glass);
+            color: var(--text);
+            border: 1px solid var(--accent2);
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(255,10,84,0.3);
+        }
+        
+        .btn-main {
+            background: var(--accent2);
+            color: black;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .btn-main:hover {
+            background: #00c4ff;
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--glass);
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-link {
+            color: var(--accent2);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .footer-link:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .nav-btn img {
+                height: 120px;
+            }
+            
+            .items-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .novel-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .wa-btns {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .container {
+                max-width: 600px;
+            }
+            
+            .notif-card {
+                min-width: 70%;
+            }
+        }
+        
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--accent);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            transition: var(--transition);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: var(--card);
+            color: var(--text);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            box-shadow: var(--shadow);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            max-width: 300px;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            background: var(--accent2);
+            color: black;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body>
 
-    <div id="home-screen" class="container">
-        
-        <div class="ad-slot">
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1417987183063486" data-ad-slot="2358676150" data-ad-format="auto" data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loader"></div>
+        <p>ناولستان لوڈ ہو رہا ہے...</p>
+    </div>
 
+    <!-- Theme Toggle -->
+    <button id="theme-toggle" class="theme-toggle" title="تھیم تبدیل کریں">
+        🌙
+    </button>
+
+    <!-- Scroll to Top -->
+    <button id="scroll-top" class="scroll-top" title="اوپر جائیں">
+        ↑
+    </button>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- TOP AD -->
+    <ins class="adsbygoogle"
+         style="display:block; margin:10px 0;"
+         data-ad-client="ca-pub-1417987183063486"
+         data-ad-slot="2358676150"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <div id="home-screen" class="container">
         <header class="header">
-            <img src="https://drive.google.com/thumbnail?id=18SlPABsEdm_mndblVL9xHUwCARh6ye7x&sz=w800" class="header-cover">
+            <img src="https://drive.google.com/thumbnail?id=18SlPABsEdm_mndblVL9xHUwCARh6ye7x&sz=w800" class="header-cover" alt="ناولستان کور">
             <div class="header-content">
-                <h1 onclick="location.reload()">ناولستان</h1>
+                <h1 onclick="goHome()">ناولستان</h1>
                 <p>✨ پریمیم اردو پورٹل ✨</p>
             </div>
         </header>
 
-        <div class="ad-slot">
-            <p style="font-size: 10px; color: #555; margin-bottom: 5px;">ADVERTISEMENT</p>
-            <div id="container-7640cd213b7ae5aad895680d4c4ecfba"></div>
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <button class="action-btn" onclick="showSearch()" title="تلاش کریں">🔍</button>
+            <button class="action-btn" onclick="showFavorites()" title="پسندیدہ">⭐</button>
+            <button class="action-btn" onclick="showHistory()" title="تاریخ">📜</button>
+            <button class="action-btn" onclick="downloadAll()" title="ڈاؤن لوڈ">📥</button>
         </div>
+
+        <!-- Search Bar -->
+        <div class="search-container" id="search-container" style="display: none;">
+            <input type="text" id="search-input" class="search-input" placeholder="تلاش کریں...">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <div class="notif-section">
+            <div class="notif-title"><span>🔔</span> نئی اپڈیٹس (سلائیڈ کریں)</div>
+            <div id="notif-slider" class="notif-slider">
+                <div class="notif-card"><div class="img-loader">لوڈ ہو رہا ہے...</div></div>
+            </div>
+        </div>
+
+        <!-- HOME MID AD -->
+        <ins class="adsbygoogle"
+             style="display:block; margin:15px 0;"
+             data-ad-client="ca-pub-1417987183063486"
+             data-ad-slot="2358676150"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
 
         <div class="menu-grid">
             <div class="nav-btn" onclick="openSection('novel')">
-                <img src="https://drive.google.com/thumbnail?id=1A6cQPJd5qacANztlmKyU6a5xiKgNAUuz&sz=w400">
+                <span class="new-badge">نیا</span>
+                <img src="https://drive.google.com/thumbnail?id=1A6cQPJd5qacANztlmKyU6a5xiKgNAUuz&sz=w400" alt="ناول">
                 <h3>📖 ناول پڑھیں</h3>
             </div>
             <div class="nav-btn" onclick="openSection('poetry')">
-                <img src="https://drive.google.com/thumbnail?id=1jeO58Sf8-w5fx5SPQZG8LqJjm7QfPHTe&sz=w400">
+                <img src="https://drive.google.com/thumbnail?id=1jeO58Sf8-w5fx5SPQZG8LqJjm7QfPHTe&sz=w400" alt="شاعری">
                 <h3>📜 اردو شاعری</h3>
             </div>
             <div class="nav-btn" onclick="goToPuzzle()">
-                <img src="https://drive.google.com/thumbnail?id=11c5Imzwd7sOJ_yEL6gvgDQy85WW0Mvsi&sz=w400">
+                <img src="https://drive.google.com/thumbnail?id=11c5Imzwd7sOJ_yEL6gvgDQy85WW0Mvsi&sz=w400" alt="گیم">
                 <h3>🎮 پزل گیم</h3>
             </div>
             <div class="nav-btn" onclick="openSection('about')">
-                <img src="https://drive.google.com/thumbnail?id=1bAfC0S2euvxZQKuawj_nVQGOiK9S41N7&sz=w400">
-<a href="https://www.effectivegatecpm.com/t4pabu4umi?key=914efa436ab2fa66d09d9487faf328b5" target="_blank" style="text-decoration: none;">
-   <div class="nav-btn">
-       <img src="https://drive.google.com/thumbnail?id=11c5Imzwd7sOJ_yEL6gvgDQy85WW0Mvsi&sz=w400">
-       <h3>🎮 پزل گیم کھیلیں</h3>
-   </div>
-</a>
-
+                <img src="https://drive.google.com/thumbnail?id=1bAfC0S2euvxZQKuawj_nVQGOiK9S41N7&sz=w400" alt="مصنف">
                 <h3>👤 مصنف</h3>
             </div>
         </div>
     </div>
 
+    <!-- Novel Selection Screen -->
     <div id="novel-select-screen" class="container" style="display:none;">
         <button class="btn-back" onclick="goHome()">🏠 ہوم پیج</button>
         <h2 style="text-align:center; margin-bottom:20px;">📖 ناول منتخب کریں</h2>
-        <div class="novel-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-            <div class="card" onclick="openNovel('baz_ishq')"><h3>🌹 باز عشق</h3></div>
-            <div class="card" onclick="openNovel('wo_jo_nazr_andaz')"><h3>👁️ وہ جو نظر انداز</h3></div>
+        <div class="novel-grid">
+            <div class="novel-card" onclick="openNovel('baz_ishq')">
+                <h3>🌹 باز عشق</h3>
+                <p style="font-size:0.85rem; opacity:0.8;">100 اقساط</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 65%"></div>
+                </div>
+                <small style="opacity: 0.6;">65% مکمل</small>
+            </div>
+            <div class="novel-card" onclick="openNovel('wo_jo_nazr_andaz')">
+                <h3>👁️ وہ جو نظر انداز بو گئے</h3>
+                <p style="font-size:0.85rem; opacity:0.8;">نیا ناول</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 30%"></div>
+                </div>
+                <small style="opacity: 0.6;">30% مکمل</small>
+            </div>
         </div>
     </div>
 
+    <!-- Content Screen -->
     <div id="content-screen" class="container" style="display:none;">
         <button class="btn-back" onclick="backToNovelSelect()">⬅️ واپس</button>
+        <h2 id="section-title" style="text-align:center; margin-bottom:20px;"></h2>
+
+        <!-- NOVEL LIST AD -->
+        <ins class="adsbygoogle"
+             style="display:block; margin:15px 0;"
+             data-ad-client="ca-pub-1417987183063486"
+             data-ad-slot="2402391265"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
         <div id="items-list" class="items-grid"></div>
     </div>
 
+    <!-- Other Content Screen -->
     <div id="other-content-screen" class="container" style="display:none;">
         <button class="btn-back" onclick="goHome()">🏠 ہوم پیج</button>
+        <h2 id="other-section-title" style="text-align:center; margin-bottom:20px;"></h2>
         <div id="other-items-list" class="items-grid"></div>
     </div>
 
-    <div class="ad-slot">
-        <div id="container-7640cd213b7ae5aad895680d4c4ecfba"></div>
+    <!-- Favorites Screen -->
+    <div id="favorites-screen" class="container" style="display:none;">
+        <button class="btn-back" onclick="goHome()">🏠 ہوم پیج</button>
+        <h2 style="text-align:center; margin-bottom:20px;">⭐ پسندیدہ</h2>
+        <div id="favorites-list" class="items-grid"></div>
     </div>
 
-    <div style="text-align: center; padding: 20px; opacity: 0.6; font-size: 0.8rem;">
-        © 2025 ناولستان | تمام حقوق محفوظ ہیں
+    <!-- History Screen -->
+    <div id="history-screen" class="container" style="display:none;">
+        <button class="btn-back" onclick="goHome()">🏠 ہوم پیج</button>
+        <h2 style="text-align:center; margin-bottom:20px;">📜 پڑھی ہوئی کہانیاں</h2>
+        <div id="history-list" class="items-grid"></div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="pay-modal" class="modal">
+        <div class="modal-box">
+            <h2 style="color:var(--accent)">🔒 ادائیگی کا طریقہ</h2>
+            <div class="ep-table">
+                <div class="ep-row"><span>ایزی پیسہ 1:</span> <span style="color:var(--accent2)">03159226260</span></div>
+                <div class="ep-row"><span>ایزی پیسہ 2:</span> <span style="color:var(--accent2)">03359079528</span></div>
+            </div>
+            <p id="pay-info" style="font-size: 0.9rem; margin-bottom: 15px;"></p>
+            <div class="wa-btns">
+                <a id="wa-1" href="#" class="btn-wa">📱 واٹس ایپ 1</a>
+                <a id="wa-2" href="#" class="btn-wa">📱 واٹس ایپ 2</a>
+            </div>
+            <button class="btn-main" onclick="showCodeInput()">🔑 کوڈ درج کریں</button>
+            <p onclick="closeModals()" style="margin-top:20px; cursor:pointer; color:var(--accent);">❌ بند کریں</p>
+        </div>
+    </div>
+
+    <!-- Code Modal -->
+    <div id="code-modal" class="modal">
+        <div class="modal-box">
+            <h2>🔑 کوڈ درج کریں</h2>
+            <input type="text" id="user-code" placeholder="XXXXXX" maxlength="6">
+            <button class="btn-main" style="background:var(--accent2)" onclick="verifyCode()">✅ تصدیق کریں</button>
+            <p onclick="closeModals()" style="margin-top:15px; cursor:pointer;">❌ کینسل</p>
+        </div>
+    </div>
+
+    <!-- FOOTER AD -->
+    <ins class="adsbygoogle"
+         style="display:block; margin:20px 0;"
+         data-ad-client="ca-pub-1417987183063486"
+         data-ad-slot="6813227809"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-links">
+            <a href="privacy-policy.html" class="footer-link">🔒 پرائیویسی پالیسی</a>
+            <a href="about-us.html" class="footer-link">👥 ہمارے بارے میں</a>
+            <a href="contact-us.html" class="footer-link">📞 رابطہ کریں</a>
+            <a href="terms-conditions.html" class="footer-link">📜 شرائط و ضوابط</a>
+            <a href="disclaimer.html" class="footer-link">⚠️ دستبرداری</a>
+        </div>
+        <p style="margin-top: 15px; opacity: 0.6; font-size: 0.8rem;">
+            © 2025 ناولستان | تمام حقوق محفوظ ہیں
+        </p>
     </div>
 
     <script>
+        // API Configuration
         const API_KEY = 'AIzaSyCMppjIJi2_xBi3oLVXN0XjdANMX10xmwE';
-        const FOLDERS = { poetry: '1Bje7U53wmDHhuUrAvj-NaHDAXAfMiG_h', about: '1QHIFfbqFIcpzHKEwEzPlRovHrC4t7wkX', baz_ishq: '1AnTGqNqtKQxRHKRXZaGxVy4H7EtlfQjI', wo_jo_nazr_andaz: '1kY-qWR-RvpdX8jPvJ-1j-OTgi6IUTgbz' };
+        const NOTIF_FOLDER = '1n7L8XI9FUWOChsGO9lMYORPFAehvKLLI';
+        const WA_NUMBERS = ['923159226260', '923125540048'];
+        const FOLDERS = {
+            poetry: '1Bje7U53wmDHhuUrAvj-NaHDAXAfMiG_h',
+            about: '1QHIFfbqFIcpzHKEwEzPlRovHrC4t7wkX',
+            baz_ishq: '1AnTGqNqtKQxRHKRXZaGxVy4H7EtlfQjI',
+            wo_jo_nazr_andaz: '1kY-qWR-RvpdX8jPvJ-1j-OTgi6IUTgbz'
+        };
 
+        // State Management
+        let unlocked = JSON.parse(localStorage.getItem('nov_unlocked')) || [];
+        let favorites = JSON.parse(localStorage.getItem('nov_favorites')) || [];
+        let readingHistory = JSON.parse(localStorage.getItem('nov_history')) || [];
+        let currentPkg = "";
+        let currentNovel = "";
+        let currentEpisode = 0;
+
+        // Initialize on Load
+        window.onload = async function() {
+            // Hide loading screen after 1 second
+            setTimeout(() => {
+                document.getElementById('loading-screen').style.display = 'none';
+            }, 1000);
+            
+            await loadNotifications();
+            initServiceWorker();
+            setupEventListeners();
+            updateHistoryDisplay();
+        };
+
+        // Service Worker Registration
+        function initServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js')
+                    .then(() => console.log('Service Worker Registered'))
+                    .catch(err => console.log('Service Worker Error:', err));
+            }
+        }
+
+        // Event Listeners Setup
+        function setupEventListeners() {
+            // Theme Toggle
+            document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+            
+            // Scroll to Top
+            document.getElementById('scroll-top').addEventListener('click', scrollToTop);
+            
+            // Search Input
+            document.getElementById('search-input').addEventListener('input', handleSearch);
+            
+            // Window Scroll
+            window.addEventListener('scroll', handleScroll);
+            
+            // Keyboard Shortcuts
+            document.addEventListener('keydown', handleKeyboardShortcuts);
+        }
+
+        // Load Notifications
+        async function loadNotifications() {
+            const slider = document.getElementById('notif-slider');
+            try {
+                const res = await fetch(`https://www.googleapis.com/drive/v3/files?q='${NOTIF_FOLDER}'+in+parents+and+trashed=false&orderBy=createdTime+desc&pageSize=5&key=${API_KEY}&fields=files(id,name)`);
+                const data = await res.json();
+                if(data.files && data.files.length > 0) {
+                    slider.innerHTML = data.files.map(f => `
+                        <div class="notif-card" onclick="showToast('${f.name}')">
+                            <div class="img-loader">لوڈ ہو رہا ہے...</div>
+                            <img src="https://drive.google.com/thumbnail?id=${f.id}&sz=w1000" loading="lazy" onerror="this.parentElement.style.display='none'">
+                        </div>
+                    `).join('');
+                } else {
+                    slider.innerHTML = '<div class="notif-card"><p>کوئی نیا نوٹیفیکیشن نہیں ہے۔</p></div>';
+                }
+            } catch (e) {
+                slider.innerHTML = '<div class="notif-card"><p>کنکشن کا مسئلہ۔</p></div>';
+            }
+        }
+
+        // Navigation Functions
         function openSection(mode) {
             document.getElementById('home-screen').style.display = 'none';
-            if(mode === 'novel') { document.getElementById('novel-select-screen').style.display = 'block'; }
-            else { document.getElementById('other-content-screen').style.display = 'block'; loadFiles(mode); }
+            document.getElementById('search-container').style.display = 'none';
+            
+            if(mode === 'novel') {
+                document.getElementById('novel-select-screen').style.display = 'block';
+            } else if(mode === 'favorites') {
+                document.getElementById('favorites-screen').style.display = 'block';
+                showFavoritesContent();
+            } else if(mode === 'history') {
+                document.getElementById('history-screen').style.display = 'block';
+                showHistoryContent();
+            } else {
+                document.getElementById('other-content-screen').style.display = 'block';
+                document.getElementById('other-section-title').innerText = 
+                    mode === 'poetry' ? "📜 اردو شاعری" : "👤 مصنف کے بارے میں";
+                loadOtherFiles(mode);
+            }
         }
 
-        function goHome() { location.reload(); }
-
-        async function loadFiles(mode) {
-            const list = document.getElementById('other-items-list');
-            list.innerHTML = "لوڈ ہو رہا ہے...";
-            const res = await fetch(`https://www.googleapis.com/drive/v3/files?q='${FOLDERS[mode]}'+in+parents&key=${API_KEY}`);
-            const data = await res.json();
-            list.innerHTML = data.files.map(f => `<div class="card" onclick="window.open('https://drive.google.com/file/d/${f.id}/view', '_blank')">${f.name}</div>`).join('');
-        }
-
-        function openNovel(id) {
+        function openNovel(novelId) {
+            currentNovel = novelId;
             document.getElementById('novel-select-screen').style.display = 'none';
             document.getElementById('content-screen').style.display = 'block';
-            renderEpisodes(id);
+            document.getElementById('section-title').innerText = 
+                novelId === 'baz_ishq' ? "🌹 باز عشق - اقساط" : "👁️ وہ جو نظر انداز بو گئے";
+            renderNovels(novelId);
         }
 
-        function renderEpisodes(id) {
+        function backToNovelSelect() {
+            document.getElementById('content-screen').style.display = 'none';
+            document.getElementById('novel-select-screen').style.display = 'block';
+        }
+
+        function goHome() {
+            document.querySelectorAll('.container').forEach(el => {
+                el.style.display = 'none';
+            });
+            document.getElementById('home-screen').style.display = 'block';
+            document.getElementById('search-container').style.display = 'none';
+        }
+
+        // Load Other Content
+        async function loadOtherFiles(mode) {
+            const list = document.getElementById('other-items-list');
+            list.innerHTML = "<div class='card'>⏳ لوڈ ہو رہا ہے...</div>";
+            try {
+                const res = await fetch(`https://www.googleapis.com/drive/v3/files?q='${FOLDERS[mode]}'+in+parents+and+trashed=false&key=${API_KEY}&fields=files(id,name,webViewLink)`);
+                const data = await res.json();
+                if(data.files && data.files.length > 0) {
+                    list.innerHTML = data.files.map(f => `
+                        <div class="card" onclick="openFileViewer('${f.webViewLink}', '${f.name}')">
+                            ${f.name.split('.')[0]}
+                        </div>
+                    `).join('');
+                } else {
+                    list.innerHTML = "<div class='card'>کوئی مواد دستیاب نہیں</div>";
+                }
+            } catch (e) {
+                list.innerHTML = "<div class='card'>⚠️ نیٹ ورک ایرر</div>";
+            }
+        }
+
+        // Render Novel Episodes
+        function renderNovels(novelId) {
             const list = document.getElementById('items-list');
             list.innerHTML = "";
-            for(let i=1; i<=20; i++) {
+            
+            for(let i = 1; i <= 100; i++) {
+                let pkg = getPkgInfo(i, novelId);
+                let isFree = i <= 10 || unlocked.includes(pkg.id);
+                let isRead = readingHistory.includes(`${novelId}_${i}`);
+                let isFavorite = favorites.includes(`${novelId}_${i}`);
+                
                 const div = document.createElement('div');
-                div.className = 'card';
-                div.innerHTML = `قسط ${i}`;
-                div.onclick = () => alert("یہ قسط جلد دستیاب ہوگی۔");
+                div.className = `card ${isFree ? '' : 'locked'} ${isRead ? 'read' : ''} ${isFavorite ? 'favorite' : ''}`;
+                div.innerHTML = `
+                    قسط ${i}
+                    <br>
+                    <small>${isFree ? '🔓 اوپن' : '🔒 لاک'}</small>
+                    ${isFavorite ? '<br><small style="color:gold">★ پسندیدہ</small>' : ''}
+                `;
+                
+                div.onclick = () => {
+                    if(isFree) {
+                        openFile(i, FOLDERS[novelId]);
+                        addToHistory(novelId, i);
+                    } else {
+                        showLock(i, pkg, novelId);
+                    }
+                };
+                
+                // Add favorite toggle on long press
+                div.addEventListener('contextmenu', (e) => {
+                    e.preventDefault();
+                    toggleFavorite(novelId, i, div);
+                });
+                
                 list.appendChild(div);
             }
         }
 
-        function goToPuzzle() { window.location.href = "https://ullahyad1.github.io/"; }
+        // Package Information
+        function getPkgInfo(n, novelId) {
+            if (n <= 10) return { id: "FREE", price: 0 };
+            if (n <= 50) return { id: `${novelId}_P1_` + Math.ceil((n-10)/5), price: 50 };
+            return { id: `${novelId}_P2_PRO`, price: 100 };
+        }
+
+        // Show Payment Modal
+        function showLock(i, pkg, novelId) {
+            currentPkg = pkg.id;
+            currentNovel = novelId;
+            currentEpisode = i;
+            
+            const novelName = novelId === 'baz_ishq' ? 'باز عشق' : 'وہ جو نظر انداز بو گئے';
+            document.getElementById('pay-info').innerText = 
+                `${novelName} - قسط ${i} لاک ہے۔ اسے ان لاک کرنے کے لیے ${pkg.price} روپے اوپر دیے گئے کسی بھی نمبر پر ایزی پیسہ کریں۔`;
+            
+            const msg = encodeURIComponent(`سلام! مجھے ${novelName} کی قسط ${i} خریدنی ہے۔`);
+            document.getElementById('wa-1').href = `https://wa.me/${WA_NUMBERS[0]}?text=${msg}`;
+            document.getElementById('wa-2').href = `https://wa.me/${WA_NUMBERS[1]}?text=${msg}`;
+            
+            document.getElementById('pay-modal').classList.add('active');
+        }
+
+        // Open File from Drive
+        async function openFile(name, fId) {
+            try {
+                const query1 = `'${fId}' in parents and name='${name}.pdf' and trashed=false`;
+                let res = await fetch(`https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query1)}&key=${API_KEY}&fields=files(webViewLink)`);
+                let data = await res.json();
+                
+                if(!data.files || data.files.length === 0) {
+                    const query2 = `'${fId}' in parents and name='${name}' and trashed=false`;
+                    res = await fetch(`https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query2)}&key=${API_KEY}&fields=files(webViewLink)`);
+                    data = await res.json();
+                }
+                
+                if(data.files && data.files.length > 0) {
+                    openFileViewer(data.files[0].webViewLink, `قسط ${name}`);
+                } else {
+                    showToast("فائل دستیاب نہیں!", "error");
+                }
+            } catch(e) {
+                console.error(e);
+                showToast("کنکشن خراب ہے", "error");
+            }
+        }
+
+        function openFileViewer(url, title) {
+            window.open(url, '_blank');
+            showToast(`کھول رہا ہوں: ${title}`);
+        }
+
+        // File Download Function
+        async function downloadFile(url, filename) {
+            try {
+                const response = await fetch(url);
+                const blob = await response.blob();
+                const downloadUrl = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = downloadUrl;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(downloadUrl);
+                showToast("ڈاؤن لوڈ شروع ہو گیا");
+            } catch (error) {
+                showToast("ڈاؤن لوڈ ناکام", "error");
+            }
+        }
+
+        // Download All Content
+        async function downloadAll() {
+            if(confirm("کیا آپ تمام مواد ڈاؤن لوڈ کرنا چاہتے ہیں؟")) {
+                showToast("ڈاؤن لوڈ تیار کیا جا رہا ہے...");
+                // Implementation for bulk download
+            }
+        }
+
+        // Show Code Input Modal
+        function showCodeInput() {
+            closeModals();
+            document.getElementById('code-modal').classList.add('active');
+        }
+
+        // Close All Modals
+        function closeModals() {
+            document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+        }
+
+        // Go to Puzzle Game
+        function goToPuzzle() {
+            window.location.href = "https://ullahyad1.github.io/";
+        }
+
+        // Verify Payment Code
+        function verifyCode() {
+            const input = document.getElementById('user-code').value.toUpperCase();
+            const d = new Date();
+            const correct = (currentPkg + d.getDate() + (d.getMonth() + 1) + "X").toUpperCase();
+            
+            if(input === correct) {
+                unlocked.push(currentPkg);
+                localStorage.setItem('nov_unlocked', JSON.stringify(unlocked));
+                showToast("کامیابی! قسط ان لاک ہو گئی۔", "success");
+                closeModals();
+                location.reload();
+            } else {
+                showToast("غلط کوڈ! دوبارہ کوشش کریں", "error");
+            }
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            const toggleBtn = document.getElementById('theme-toggle');
+            toggleBtn.innerHTML = newTheme === 'light' ? '🌙' : '☀️';
+            toggleBtn.title = newTheme === 'light' ? 'ڈارک موڈ' : 'لائٹ موڈ';
+            
+            showToast(newTheme === 'light' ? 'لائٹ موڈ' : 'ڈارک موڈ');
+        }
+
+        // Show Search Bar
+        function showSearch() {
+            const searchContainer = document.getElementById('search-container');
+            searchContainer.style.display = searchContainer.style.display === 'none' ? 'block' : 'none';
+            if(searchContainer.style.display === 'block') {
+                document.getElementById('search-input').focus();
+            }
+        }
+
+        // Handle Search
+        function handleSearch(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            // Implement search functionality
+            console.log("Searching for:", searchTerm);
+        }
+
+        // Favorites Management
+        function toggleFavorite(novelId, episode, element) {
+            const itemId = `${novelId}_${episode}`;
+            const index = favorites.indexOf(itemId);
+            
+            if(index === -1) {
+                favorites.push(itemId);
+                element.classList.add('favorite');
+                showToast("پسندیدہ میں شامل کر دیا");
+            } else {
+                favorites.splice(index, 1);
+                element.classList.remove('favorite');
+                showToast("پسندیدہ سے ہٹا دیا");
+            }
+            
+            localStorage.setItem('nov_favorites', JSON.stringify(favorites));
+        }
+
+        function showFavorites() {
+            openSection('favorites');
+        }
+
+        function showFavoritesContent() {
+            const list = document.getElementById('favorites-list');
+            
+            if(favorites.length === 0) {
+                list.innerHTML = '<div class="card">کوئی پسندیدہ مواد نہیں</div>';
+                return;
+            }
+            
+            list.innerHTML = favorites.map(item => {
+                const [novelId, episode] = item.split('_');
+                const novelName = novelId === 'baz_ishq' ? 'باز عشق' : 'وہ جو نظر انداز';
+                
+                return `
+                    <div class="card favorite" onclick="openFile(${episode}, FOLDERS['${novelId}'])">
+                        ${novelName} - قسط ${episode}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Reading History
+        function addToHistory(novelId, episode) {
+            const itemId = `${novelId}_${episode}`;
+            if(!readingHistory.includes(itemId)) {
+                readingHistory.unshift(itemId);
+                // Keep only last 50 items
+                if(readingHistory.length > 50) {
+                    readingHistory.pop();
+                }
+                localStorage.setItem('nov_history', JSON.stringify(readingHistory));
+            }
+        }
+
+        function showHistory() {
+            openSection('history');
+        }
+
+        function showHistoryContent() {
+            const list = document.getElementById('history-list');
+            
+            if(readingHistory.length === 0) {
+                list.innerHTML = '<div class="card">کوئی تاریخ دستیاب نہیں</div>';
+                return;
+            }
+            
+            list.innerHTML = readingHistory.map(item => {
+                const [novelId, episode] = item.split('_');
+                const novelName = novelId === 'baz_ishq' ? 'باز عشق' : 'وہ جو نظر انداز';
+                
+                return `
+                    <div class="card read" onclick="openFile(${episode}, FOLDERS['${novelId}'])">
+                        ${novelName} - قسط ${episode}
+                        <br>
+                        <small style="opacity: 0.6">پڑھا ہوا</small>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateHistoryDisplay() {
+            const historyBtn = document.querySelector('[onclick="showHistory()"]');
+            if(historyBtn && readingHistory.length > 0) {
+                historyBtn.innerHTML = `📜 (${readingHistory.length})`;
+            }
+        }
+
+        // Toast Notification System
+        function showToast(message, type = "info") {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast show';
+            
+            // Set color based on type
+            if(type === "success") {
+                toast.style.borderLeftColor = "#16a34a";
+            } else if(type === "error") {
+                toast.style.borderLeftColor = "#dc2626";
+            }
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Scroll to Top Functionality
+        function handleScroll() {
+            const scrollTop = document.getElementById('scroll-top');
+            if(window.pageYOffset > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Keyboard Shortcuts
+        function handleKeyboardShortcuts(e) {
+            if(e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 'f':
+                        e.preventDefault();
+                        showSearch();
+                        break;
+                    case 'h':
+                        e.preventDefault();
+                        goHome();
+                        break;
+                    case 'd':
+                        e.preventDefault();
+                        toggleTheme();
+                        break;
+                }
+            }
+        }
+
+        // Initialize theme from localStorage
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.getElementById('theme-toggle').innerHTML = savedTheme === 'light' ? '🌙' : '☀️';
+        document.getElementById('theme-toggle').title = savedTheme === 'light' ? 'ڈارک موڈ' : 'لائٹ موڈ';
+
+        // AdSense auto load
+        (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 </body>
 </html>
