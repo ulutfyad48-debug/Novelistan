@@ -3,75 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رابطہ کریں | ناولستان</title>
-
-    <!-- Cloudflare Turnstile -->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <title>رابطہ کریں | ید اللہ ڈیجیٹل ہب</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        body { font-family: 'Noto Nastaliq Urdu', serif; background: #050816; color: white; padding: 20px; line-height: 1.8; }
-        .container { max-width: 800px; margin: auto; background: #111827; padding: 30px; border-radius: 15px; border: 1px solid #ff0a54; }
-        h1 { color: #ff0a54; text-align: center; margin-bottom: 25px; }
-        .contact-box { background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .contact-item { display: flex; align-items: center; margin: 15px 0; padding: 10px; border-bottom: 1px solid #333; }
-        .icon { font-size: 24px; margin-left: 15px; }
-        .back-btn { display: block; text-align: center; margin-top: 30px; padding: 10px 20px; background: #ff0a54; color: white; border-radius: 10px; }
+        :root {
+            --primary: #4361ee;
+            --whatsapp: #25D366;
+            --gmail: #DB4437;
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.5);
+        }
+
+        body {
+            font-family: 'Poppins', 'Noto Nastaliq Urdu', sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .contact-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h1 { color: var(--primary); margin-bottom: 10px; font-family: 'Noto Nastaliq Urdu'; }
+        
+        .form-group { text-align: right; margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 500; }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        .send-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+            font-family: 'Noto Nastaliq Urdu';
+        }
+
+        /* Modal Style (پاپ اپ ڈیزائن) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .option-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-wa { background: var(--whatsapp); }
+        .btn-mail { background: var(--gmail); }
+        .option-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>📞 رابطہ کریں</h1>
-        
-        <p>ہم سے رابطہ کرنے کے لیے ذرائع درج ذیل ہیں۔ ہم آپ کے پیغامات، تجاویز اور آراء کا خیرمقدم کرتے ہیں۔</p>
-        
-        <div class="contact-box">
-            <h2>📧 براہ راست ای میل</h2>
-            <div class="contact-item">
-                <div class="icon">📩</div>
-                <div>
-                    <strong>ای میل ایڈریس:</strong><br>
-                    <a href="mailto:ullahyad199@gmail.com">ullahyad199@gmail.com</a>
-                </div>
-            </div>
-            <p>ہم 24-48 گھنٹوں کے اندر جواب دیتے ہیں۔</p>
-        </div>
-        
-        <div class="contact-box">
-            <h2>💬 مدد کے لیے</h2>
-            <p>اگر آپ کو کوئی مسئلہ درپیش ہے جیسے:</p>
-            <ul>
-                <li>ناول کی قسط نہیں کھل رہی</li>
-                <li>ادائیگی کا مسئلہ</li>
-                <li>ویب سائٹ میں کوئی خرابی</li>
-                <li>کاپی رائیٹ یا مواد کے متعلق سوال</li>
-            </ul>
-            <p>تو براہ کرم ای میل کے ذریعے رابطہ کریں۔</p>
-        </div>
-        
-        <div class="contact-box">
-            <h2>⚠️ اہم نوٹ</h2>
-            <ul>
-                <li>صرف ای میل کے ذریعے رابطہ کریں</li>
-                <li>فون کالز یا واٹس ایپ میسجز کا جواب نہیں دیا جاتا</li>
-                <li>بزنس انکوائریز کے لیے مذکورہ ایڈریس استعمال کریں</li>
-                <li>سپورٹ ٹیم: صرف ید اللہ (مالک/ڈویلپر)</li>
-            </ul>
-        </div>
-        
-        <div class="contact-box">
-            <h2>🏢 ٹیم</h2>
-            <p><strong>مالک / ڈویلپر:</strong> ید اللہ (طالب علم)</p>
-            <p><strong>مقام:</strong> پاکستان</p>
-            <p><strong>زبان:</strong> اردو / انگریزی</p>
-        </div>
 
-        <!-- Turnstile Verification -->
-        <div class="contact-box" style="text-align:center;">
-            <p style="font-size:14px; opacity:0.7;">سیکیورٹی ویریفکیشن</p>
-            <div class="cf-turnstile" data-sitekey="0x4AAAAAACOKTtxywJOjLxUm"></div>
+<div class="contact-container">
+    <h1>رابطہ کریں</h1>
+    <p>آپ کے پیغامات ہمارے لیے اہم ہیں۔</p>
+
+    <form id="contactForm">
+        <div class="form-group">
+            <label>آپ کا نام</label>
+            <input type="text" id="userName" placeholder="نام لکھیں..." required>
         </div>
-        
-        <a href="index.html" class="back-btn">← ہوم پیج پر واپس جائیں</a>
+        <div class="form-group">
+            <label>پیغام</label>
+            <textarea id="userMsg" rows="4" placeholder="آپ کیا کہنا چاہتے ہیں؟" required></textarea>
+        </div>
+        <button type="submit" class="send-btn">رابطہ کریں</button>
+    </form>
+
+    <a href="index.html" class="back-link" style="display:block; margin-top:15px; color:var(--primary); text-decoration:none;">← واپس ہوم پیج پر جائیں</a>
+</div>
+
+<div id="choiceModal" class="modal">
+    <div class="modal-content">
+        <h3>آپ پیغام کیسے بھیجنا چاہتے ہیں؟</h3>
+        <a href="#" id="waLink" class="option-btn btn-wa">
+            <i class="fab fa-whatsapp"></i> واٹس ایپ کے ذریعے
+        </a>
+        <a href="#" id="mailLink" class="option-btn btn-mail">
+            <i class="fas fa-envelope"></i> ای میل کے ذریعے
+        </a>
+        <button onclick="closeModal()" style="margin-top:10px; background:none; border:none; color:red; cursor:pointer;">کینسل</button>
     </div>
+</div>
+
+<script>
+    const form = document.getElementById('contactForm');
+    const modal = document.getElementById('choiceModal');
+
+    form.onsubmit = function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('userName').value;
+        const msg = document.getElementById('userMsg').value;
+        const myPhone = "923125540048"; // آپ کا نمبر
+        const myEmail = "ullahyad199@gmail.com";
+
+        // WhatsApp Link
+        const waText = `اسلام علیکم! میرا نام ${name} ہے۔ میرا پیغام: ${msg}`;
+        document.getElementById('waLink').href = `https://wa.me/${myPhone}?text=${encodeURIComponent(waText)}`;
+
+        // Email Link
+        const mailBody = `نام: ${name}\nپیغام: ${msg}`;
+        document.getElementById('mailLink').href = `mailto:${myEmail}?subject=New Message from Website&body=${encodeURIComponent(mailBody)}`;
+
+        // Show Modal
+        modal.style.display = "flex";
+    }
+
+    function closeModal() {
+        modal.style.display = "none";
+    }
+
+    // Close modal if clicked outside
+    window.onclick = function(event) {
+        if (event.target == modal) closeModal();
+    }
+</script>
+
 </body>
 </html>
