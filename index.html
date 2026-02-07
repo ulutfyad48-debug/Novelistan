@@ -4,6 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <script>
+  // جب بھی آپ ویب سائٹ میں کوئی تبدیلی کریں، تو اس ورژن نمبر کو بدل دیں
+  const SITE_VERSION = "2026-02-07-v1"; 
+
+  async function forceUpdate() {
+    const savedVersion = localStorage.getItem('site_version');
+
+    // اگر پرانا ورژن اور نیا ورژن میچ نہ ہوں تو یہ کوڈ چلے گا
+    if (savedVersion !== SITE_VERSION) {
+      if ('caches' in window) {
+        // تمام پرانے کیشے کو ڈیلیٹ کرنا
+        const names = await caches.keys();
+        await Promise.all(names.map(name => caches.delete(name)));
+      }
+      
+      // لوکل اسٹوریج میں نیا ورژن اپڈیٹ کرنا
+      localStorage.setItem('site_version', SITE_VERSION);
+      
+      // براؤزر کو سرور سے نیا ڈیٹا لوڈ کرنے پر مجبور کرنا
+      window.location.reload(true);
+    }
+  }
+
+  // فنکشن کو چلانا
+  forceUpdate();
+</script>
+
+<script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js');
 }
